@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'green',
   },
   welcome: {
     fontSize: 20,
@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
   cards: {
     textAlign: 'center',
     color: 'red',
-    marginBottom: 5,
+    backgroundColor: 'white',
+    // alignSelf: 'stretch',
+    width: 50,
+    height: 70,
+    // marginBottom: 5,
   },
 });
