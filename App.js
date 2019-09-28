@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import Instructions from './Instructions.js';
+import Card from './Card.js';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 const instructions = Platform.select({
@@ -22,9 +22,8 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}><Instructions/></Text>
+        <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+        <Text style={styles.cards}><Card/></Text>
 
       </View>
     );
@@ -43,9 +42,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  instructions: {
+  cards: {
     textAlign: 'center',
-    color: 'blue',
+    color: 'red',
     marginBottom: 5,
   },
 });

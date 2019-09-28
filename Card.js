@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import {Platform} from 'react-native';
 
-export default class Instructions extends Component {
+export default class Card extends Component {
   render () {
     return (
         'HELLO WORLD'
