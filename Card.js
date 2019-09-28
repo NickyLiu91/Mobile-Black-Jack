@@ -4,10 +4,12 @@ import React, { Component } from "react";
 export default class Card extends Component {
   render () {
     return (
-        'One'
+        {props.cards.length}
     )
   }
 }
+
+// {Math.floor(Math.random() * Math.floor(props.cards.length))}
 
 // const Instructions = () => {
 //   return (
