@@ -3,13 +3,23 @@ import React, { Component } from "react";
 import {Text, View} from 'react-native';
 
 export default class Card extends Component {
-  render () {
-    return (
-      <Text>
-      {this.props.card.number}
-      {this.props.card.suit}
-      </Text>
-    )
+  if this.props.card != {} {
+    render () {
+      return (
+        <Text>
+        {this.props.card.number}
+        {this.props.card.suit}
+        </Text>
+      )
+    }
+  } else {
+    render () {
+      return (
+        <Text>
+        BLANK
+        </Text>
+      )
+    }
   }
 }
 

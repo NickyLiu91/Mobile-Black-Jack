@@ -56,7 +56,7 @@ export default class App extends Component {
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to Black Jack!</Text>
         <Button background='black' color='gold' title="DEAL" onPress={this.dealCard}/>
-        <Hand card={this.state.card}/>
+        <Hand hand={this.state.hand}/>
         // <Text style={styles.cards}><Card card={this.state.card}/></Text>
         // <Text style={styles.cards}><Card card={this.state.card}/></Text>
       </View>
