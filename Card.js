@@ -6,7 +6,8 @@ export default class Card extends Component {
   render () {
     return (
       <Text>
-      {this.props.cards.length}
+      {this.props.card.number}
+      {this.props.card.suit}
       </Text>
     )
   }

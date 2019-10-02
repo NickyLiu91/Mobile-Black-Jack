@@ -10,7 +10,8 @@ const deck = []
 export default class App extends Component {
 
   state = {
-    cards: []
+    cards: [],
+    card: {number: 1, suit: 'Clubs'}
   }
 
   generateDeck = () => {
@@ -28,12 +29,20 @@ export default class App extends Component {
     })
   }
 
+  dealCard = () => {
+    let selectedCard = this.state.cards(Math.floor(Math.random() * this.state.cards.length) + 1)
+    this.setState({
+      cards: this.state.cards.filter(obj => {obj.number == selectedCard.number && obj.suit == selectedCard.suit}),
+      card: selectedCard
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to Black Jack!</Text>
-        <Text style={styles.cards}><Card cards={this.state.cards}/></Text>
-        <Text style={styles.cards}><Card cards={this.state.cards}/></Text>
+        <Text style={styles.cards}><Card card={this.state.card}/></Text>
+        <Text style={styles.cards}><Card card={this.state.card}/></Text>
       </View>
     );
   }
