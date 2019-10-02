@@ -32,10 +32,10 @@ export default class App extends Component {
   }
 
   dealCard = () => {
-    if this.state.hand.some(obj => obj == {}) {
+    if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
       let copyHand = this.state.hand
       let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
-      let replacementIndex = this.state.hand.findIndex(obj => obj == {})
+      let replacementIndex = this.state.hand.findIndex(obj => Object.keys(obj).length == 0)
       copyHand[replacementIndex] = selectedCard
       this.setState({
         cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
@@ -57,8 +57,6 @@ export default class App extends Component {
         <Text style={styles.welcome}>Welcome to Black Jack!</Text>
         <Button background='black' color='gold' title="DEAL" onPress={this.dealCard}/>
         <Hand hand={this.state.hand}/>
-        // <Text style={styles.cards}><Card card={this.state.card}/></Text>
-        // <Text style={styles.cards}><Card card={this.state.card}/></Text>
       </View>
     );
   }

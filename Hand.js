@@ -6,11 +6,13 @@ import Card from './Card.js';
 export default class Hand extends Component {
   render () {
     return (
-      <Card card={this.props.hand[0]}/>
-      <Card card={this.props.hand[1]}/>
-      <Card card={this.props.hand[2]}/>
-      <Card card={this.props.hand[3]}/>
-      <Card card={this.props.hand[4]}/>
+      <View>
+        <Card card={this.props.hand[0]}/>
+        <Card card={this.props.hand[1]}/>
+        <Card card={this.props.hand[2]}/>
+        <Card card={this.props.hand[3]}/>
+        <Card card={this.props.hand[4]}/>
+      </View>
     )
   }
 }

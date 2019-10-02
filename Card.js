@@ -3,17 +3,16 @@ import React, { Component } from "react";
 import {Text, View} from 'react-native';
 
 export default class Card extends Component {
-  if this.props.card != {} {
-    render () {
+
+  render () {
+    if (Object.keys(this.props.card).length != 0) {
       return (
         <Text>
         {this.props.card.number}
         {this.props.card.suit}
         </Text>
       )
-    }
-  } else {
-    render () {
+    } else {
       return (
         <Text>
         BLANK
@@ -21,6 +20,7 @@ export default class Card extends Component {
       )
     }
   }
+
 }
 
 // {Math.floor(Math.random() * Math.floor(props.cards.length))}
