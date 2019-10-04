@@ -17,7 +17,13 @@ export default class App extends Component {
   generateDeck = () => {
     allNumbers.forEach(cardNumber => {
       allSuites.forEach(cardSuit => {
-        deck.push({number: cardNumber, suit: cardSuit})
+        if (cardNumber == 'A') {
+          deck.push({number: cardNumber, suit: cardSuit, value: 11})
+        } else (cardNumber == 'J' || cardNumber == 'Q' || cardNumber == 'K') {
+          deck.push({number: cardNumber, suit: cardSuit, value: 10})
+        } else {
+          deck.push({number: cardNumber, suit: cardSuit, value: parseInt(cardNumber)})
+        }
       })
     })
   }
@@ -30,6 +36,7 @@ export default class App extends Component {
       this.dealCard()
     })
   }
+
 
   dealCard = () => {
     if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
@@ -44,6 +51,10 @@ export default class App extends Component {
     }
   }
 
+  holdHand = () => {
+    if this.state.hand.filter(obj.number = "A").length == 1 && this.
+  }
+
   // deal = () => {
   //   let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
   //   this.setState({
@@ -56,6 +67,7 @@ export default class App extends Component {
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to Black Jack!</Text>
         <Button background='black' color='gold' title="DEAL" onPress={this.dealCard}/>
+        <Button background='black' color='gold' title="HOLD" onPress={this.holdHand}/>
         <Hand hand={this.state.hand}/>
       </View>
     );
