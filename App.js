@@ -12,6 +12,7 @@ export default class App extends Component {
   state = {
     cards: [],
     hand: [{}, {}, {}, {}, {}]
+    end: ''
   }
 
   generateDeck = () => {
@@ -53,13 +54,25 @@ export default class App extends Component {
 
   holdHand = () => {
     let handValue = 0
-    console.log(this.state.hand[0].value)
     this.state.hand.forEach(obj => {
       if (Object.keys(obj).length != 0) {
         handValue += obj.value
       }
     })
-    console.log(handValue)
+  }
+
+  lose = (totalValue) => {
+    if (totalValue > 21) {
+      this.setState({
+        end: 'LOSE'
+      })
+    }
+  }
+
+  win = () => {
+    this.setState({
+      end: 'WIN'
+    })
   }
 
   // deal = () => {
