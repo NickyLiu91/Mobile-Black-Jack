@@ -19,7 +19,7 @@ export default class App extends Component {
       allSuites.forEach(cardSuit => {
         if (cardNumber == 'A') {
           deck.push({number: cardNumber, suit: cardSuit, value: 11})
-        } else (cardNumber == 'J' || cardNumber == 'Q' || cardNumber == 'K') {
+        } else if (cardNumber == 'J' || cardNumber == 'Q' || cardNumber == 'K') {
           deck.push({number: cardNumber, suit: cardSuit, value: 10})
         } else {
           deck.push({number: cardNumber, suit: cardSuit, value: parseInt(cardNumber)})
@@ -52,7 +52,14 @@ export default class App extends Component {
   }
 
   holdHand = () => {
-    if this.state.hand.filter(obj.number = "A").length == 1 && this.
+    let handValue = 0
+    console.log(this.state.hand[0].value)
+    this.state.hand.forEach(obj => {
+      if (Object.keys(obj).length != 0) {
+        handValue += obj.value
+      }
+    })
+    console.log(handValue)
   }
 
   // deal = () => {

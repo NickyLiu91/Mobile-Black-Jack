@@ -9,6 +9,7 @@ export default class Card extends Component {
       return (
         <Text>
         {this.props.card.number}
+        {this.props.card.value}
         {this.props.card.suit}
         </Text>
       )
