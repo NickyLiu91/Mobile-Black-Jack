@@ -59,16 +59,18 @@ export default class App extends Component {
         handValue += obj.value
       }
     })
-  }
-
-  lose = (totalValue) => {
-    if (totalValue > 21) {
-      this.setState({
-        end: 'LOSE'
-      })
+    if (handValue > 21) {
+      this.lose()
+    } else if (this.state.hand.every(obj => {Object.keys(obj).length != 0})) {
+      this.win()
     }
   }
 
+  lose = () => {
+    this.setState({
+      end: 'LOSE'
+    })
+  }
   win = () => {
     this.setState({
       end: 'WIN'
