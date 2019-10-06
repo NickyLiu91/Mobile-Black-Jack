@@ -11,7 +11,8 @@ export default class App extends Component {
 
   state = {
     cards: [],
-    hand: [{}, {}, {}, {}, {}]
+    hand: [{}, {}, {}, {}, {}],
+    computerHand: [{}, {}, {}, {}, {}],
     end: ''
   }
 
@@ -71,6 +72,7 @@ export default class App extends Component {
       end: 'LOSE'
     })
   }
+
   win = () => {
     this.setState({
       end: 'WIN'
@@ -91,6 +93,7 @@ export default class App extends Component {
         <Button background='black' color='gold' title="DEAL" onPress={this.dealCard}/>
         <Button background='black' color='gold' title="HOLD" onPress={this.holdHand}/>
         <Hand hand={this.state.hand}/>
+        <ComputerHand computerHand={this.state.computerHand}/>
       </View>
     );
   }
