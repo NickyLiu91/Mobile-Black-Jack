@@ -7,11 +7,11 @@ export default class ComputerHand extends Component {
   render () {
     return (
       <View>
-        <Card card={this.props.computerHand[0]}/>
-        <Card card={this.props.computerHand[1]}/>
-        <Card card={this.props.computerHand[2]}/>
-        <Card card={this.props.computerHand[3]}/>
-        <Card card={this.props.computerHand[4]}/>
+        <Card card={this.props.computerHand[0]} player={"computer"}/>
+        <Card card={this.props.computerHand[1]} player={"computer"}/>
+        <Card card={this.props.computerHand[2]} player={"computer"}/>
+        <Card card={this.props.computerHand[3]} player={"computer"}/>
+        <Card card={this.props.computerHand[4]} player={"computer"}/>
       </View>
     )
   }

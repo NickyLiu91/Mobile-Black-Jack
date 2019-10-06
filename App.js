@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Hand from './Hand.js';
+import ComputerHand from './ComputerHand.js';
 import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 
 const allNumbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
