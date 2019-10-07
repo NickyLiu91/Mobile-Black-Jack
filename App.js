@@ -62,6 +62,18 @@ export default class App extends Component {
       this.setState({
         cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
         computerHand: copyHand
+      }, () => {
+        let handValue = 0
+        this.state.computerHand.forEach(obj => {
+          if (Object.keys(obj).length != 0) {
+            handValue += obj.value
+          }
+        })
+        if (handValue > 21) {
+          this.win()
+        } else if (this.state.computerHand.every(obj => {Object.keys(obj).length != 0})) {
+          this.lose()
+        }
       })
     }
   }
@@ -100,16 +112,31 @@ export default class App extends Component {
   // }
 
   render() {
-    return (
-      <View style={styles.container}>
+    if (this.state.end == 'LOSE') {
+      return (
+        <View>
+        <Text>YOU LOSE</Text>
+        </View>
+      )
+    } else if (this.state.end == 'WIN') {
+      return (
+        <View>
+        <Text>YOU WIN</Text>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to Black Jack!</Text>
         <ComputerHand computerHand={this.state.computerHand}/>
         <Button background='black' color='gold' title="DEAL" onPress={this.dealCard}/>
         <Button background='black' color='gold' title="HOLD" onPress={this.holdHand}/>
         <Button background='black' color='gold' title="COMPUTER" onPress={this.dealComputerCard}/>
         <Hand hand={this.state.hand}/>
-      </View>
-    );
+        </View>
+      );
+
+    }
   }
 }
 
