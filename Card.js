@@ -5,13 +5,7 @@ import {Text, View} from 'react-native';
 export default class Card extends Component {
 
   render () {
-    if (this.props.player == 'computer') {
-      return (
-        <Text>
-        Computer
-        </Text>
-      )
-    } else if (Object.keys(this.props.card).length != 0) {
+     if (Object.keys(this.props.card).length != 0) {
       return (
         <Text>
         {this.props.card.number}

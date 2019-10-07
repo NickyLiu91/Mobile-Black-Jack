@@ -103,11 +103,11 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+        <ComputerHand computerHand={this.state.computerHand}/>
         <Button background='black' color='gold' title="DEAL" onPress={this.dealCard}/>
         <Button background='black' color='gold' title="HOLD" onPress={this.holdHand}/>
         <Button background='black' color='gold' title="COMPUTER" onPress={this.dealComputerCard}/>
         <Hand hand={this.state.hand}/>
-        <ComputerHand computerHand={this.state.computerHand}/>
       </View>
     );
   }
