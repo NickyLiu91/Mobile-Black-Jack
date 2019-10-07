@@ -40,7 +40,6 @@ export default class App extends Component {
     })
   }
 
-
   dealCard = () => {
     if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
       let copyHand = this.state.hand
@@ -50,6 +49,19 @@ export default class App extends Component {
       this.setState({
         cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
         hand: copyHand
+      })
+    }
+  }
+
+  dealComputerCard = () => {
+    if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
+      let copyHand = this.state.computerHand
+      let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
+      let replacementIndex = this.state.computerHand.findIndex(obj => Object.keys(obj).length == 0)
+      copyHand[replacementIndex] = selectedCard
+      this.setState({
+        cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
+        computerHand: copyHand
       })
     }
   }
@@ -93,6 +105,7 @@ export default class App extends Component {
         <Text style={styles.welcome}>Welcome to Black Jack!</Text>
         <Button background='black' color='gold' title="DEAL" onPress={this.dealCard}/>
         <Button background='black' color='gold' title="HOLD" onPress={this.holdHand}/>
+        <Button background='black' color='gold' title="COMPUTER" onPress={this.dealComputerCard}/>
         <Hand hand={this.state.hand}/>
         <ComputerHand computerHand={this.state.computerHand}/>
       </View>
