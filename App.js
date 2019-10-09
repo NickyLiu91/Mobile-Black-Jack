@@ -41,15 +41,27 @@ export default class App extends Component {
   }
 
   dealCard = () => {
+    let handValue = 0
+    this.state.hand.forEach(obj => {
+      if (Object.keys(obj).length != 0) {
+        handValue += obj.value
+      }
+    })
+
     if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
       let copyHand = this.state.hand
       let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
       let replacementIndex = this.state.hand.findIndex(obj => Object.keys(obj).length == 0)
       copyHand[replacementIndex] = selectedCard
-      this.setState({
-        cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
-        hand: copyHand
-      })
+
+      if (handValue + selectedCard.value > 21) {
+        this.lose()
+      } else {
+        this.setState({
+          cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
+          hand: copyHand
+        })
+      }
     }
   }
 
