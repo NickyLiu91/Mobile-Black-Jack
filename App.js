@@ -12,7 +12,7 @@ export default class App extends Component {
 
   state = {
     cards: [],
-    hand: [{number: 'A', suit: 'Spades', value: 11}, {}, {}, {}, {}],
+    hand: [{}, {}, {}, {}, {}],
     computerHand: [{}, {}, {}, {}, {}],
     end: ''
   }
@@ -97,13 +97,11 @@ export default class App extends Component {
         handValue += obj.value
       }
     })
-    // console.log(Object.keys(this.state.hand[4]).length)
-    // console.log(this.state.hand.filter(obj => Object.keys(obj).length != 0))
 
     if (this.state.hand.filter(obj => Object.keys(obj).length != 0).length == 2 && (this.state.hand.find(obj => (obj.number == 'J' || obj.number == 'Q' || obj.number == 'K')) && this.state.hand.find(obj => obj.number == 'A'))
     ) {
       this.win()
-    } else if(this.state.hand.every(obj => {Object.keys(obj).length != 0})) {
+    } else if(this.state.hand.every(obj => Object.keys(obj).length != 0)) {
       this.win()
     }
   }
