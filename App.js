@@ -114,14 +114,14 @@ export default class App extends Component {
   render() {
     if (this.state.end == 'LOSE') {
       return (
-        <View>
-        <Text>YOU LOSE</Text>
+        <View style={styles.container}>
+          <Text style={styles.welcome}>YOU LOSE</Text>
         </View>
       )
     } else if (this.state.end == 'WIN') {
       return (
-        <View>
-        <Text>YOU WIN</Text>
+        <View style={styles.container}>
+          <Text style={styles.welcome}>YOU WIN</Text>
         </View>
       )
     } else {
