@@ -16,7 +16,7 @@ export default class Card extends Component {
     } else {
       return (
         <Text>
-        BLANK
+
         </Text>
       )
     }
@@ -26,9 +26,12 @@ export default class Card extends Component {
 
 const styles = StyleSheet.create({
   card: {
-    width: 100,
-    height: 200,
+    width: 70,
+    height: 140,
     color: 'red',
     backgroundColor: 'white',
+    borderColor: 'black',
+    borderWidth: 3,
+    margin: 5
   }
 });

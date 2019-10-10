@@ -14,13 +14,16 @@ export default class Hand extends Component {
 
   render () {
     return (
-      <View>
+      <View style={styles.hand}>
         {this.generateHandCards()}
       </View>
     )
   }
 }
 
-// {Math.floor(Math.random() * Math.floor(props.cards.length))}
-
-// export default Card;
+const styles = StyleSheet.create({
+  hand: {
+    flexDirection: 'row',
+    backgroundColor: 'brown'
+  }
+});
