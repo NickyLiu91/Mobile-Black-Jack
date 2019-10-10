@@ -14,9 +14,16 @@ export default class ComputerHand extends Component {
 
   render () {
     return (
-      <View>
+      <View style={styles.hand}>
         {this.generateHandCards()}
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  hand: {
+    flexDirection: 'row',
+    backgroundColor: 'brown'
+  }
+});
