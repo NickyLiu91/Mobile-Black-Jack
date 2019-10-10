@@ -4,14 +4,18 @@ import {Text, View} from 'react-native';
 import Card from './Card.js';
 
 export default class Hand extends Component {
+
+  generateHandCards = () => {
+    let i = 0
+    return this.props.hand.map(
+      cardObj => <Card key={i++} card={cardObj}/>
+    )
+  }
+
   render () {
     return (
       <View>
-        <Card card={this.props.hand[0]}/>
-        <Card card={this.props.hand[1]}/>
-        <Card card={this.props.hand[2]}/>
-        <Card card={this.props.hand[3]}/>
-        <Card card={this.props.hand[4]}/>
+        {this.generateHandCards()}
       </View>
     )
   }
