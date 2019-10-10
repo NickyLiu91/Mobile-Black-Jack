@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import {Platform} from 'react-native';
-import {Text, View} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import Card from './Card.js';
 
 export default class Hand extends Component {
