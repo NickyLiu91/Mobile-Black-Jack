@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 // import {Platform} from 'react-native';
-import {Text, View} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 
 export default class Card extends Component {
 
   render () {
      if (Object.keys(this.props.card).length != 0) {
       return (
-        <Text>
-        {this.props.card.number}
-        {this.props.card.value}
+        <Text style={styles.card}>
+        {this.props.card.number}{"\n"}
+        {this.props.card.value}{"\n"}
         {this.props.card.suit}
         </Text>
       )
@@ -24,6 +24,11 @@ export default class Card extends Component {
 
 }
 
-// {Math.floor(Math.random() * Math.floor(props.cards.length))}
-
-// export default Card;
+const styles = StyleSheet.create({
+  card: {
+    width: 100,
+    height: 200,
+    color: 'red',
+    backgroundColor: 'white',
+  }
+});
