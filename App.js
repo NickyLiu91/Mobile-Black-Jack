@@ -129,24 +129,30 @@ export default class App extends Component {
     if (this.state.end == 'LOSE') {
       return (
         <View style={styles.container}>
+          <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+          <ComputerHand computerHand={this.state.computerHand}/>
           <Text style={styles.welcome}>YOU LOSE</Text>
+          <Hand hand={this.state.hand}/>
         </View>
-      )
+      );
     } else if (this.state.end == 'WIN') {
       return (
         <View style={styles.container}>
+          <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+          <ComputerHand computerHand={this.state.computerHand}/>
           <Text style={styles.welcome}>YOU WIN</Text>
+          <Hand hand={this.state.hand}/>
         </View>
-      )
+      );
     } else {
       return (
         <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Black Jack!</Text>
-        <ComputerHand computerHand={this.state.computerHand}/>
-        <Button background='black' color='gold' title="DEAL" onPress={this.dealCard}/>
-        <Button background='black' color='gold' title="HOLD" onPress={this.holdHand}/>
-        <Button background='black' color='gold' title="COMPUTER" onPress={this.dealComputerCard}/>
-        <Hand hand={this.state.hand}/>
+          <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+          <ComputerHand computerHand={this.state.computerHand}/>
+          <Button background='black' color='gold' title="DEAL" onPress={this.dealCard}/>
+          <Button background='black' color='gold' title="HOLD" onPress={this.holdHand}/>
+          <Button background='black' color='gold' title="COMPUTER" onPress={this.dealComputerCard}/>
+          <Hand hand={this.state.hand}/>
         </View>
       );
 
