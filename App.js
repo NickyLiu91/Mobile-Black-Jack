@@ -107,6 +107,10 @@ export default class App extends Component {
         })
       }
     }
+
+    if (handValue >= computerHandValue && computerHandValue < 21) {
+      setTimeout(this.dealComputerCard, 1000)
+    }
   }
 
   holdHand = () => {
