@@ -67,28 +67,45 @@ export default class App extends Component {
   }
 
   dealComputerCard = () => {
-    if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
-      let copyHand = this.state.computerHand
-      let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
-      let replacementIndex = this.state.computerHand.findIndex(obj => Object.keys(obj).length == 0)
-      copyHand[replacementIndex] = selectedCard
-      this.setState({
-        draw: 'no',
-        cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
-        computerHand: copyHand
-      }, () => {
-        let handValue = 0
-        this.state.computerHand.forEach(obj => {
-          if (Object.keys(obj).length != 0) {
-            handValue += obj.value
+
+    let handValue = 0
+    this.state.hand.forEach(obj => {
+      if (Object.keys(obj).length != 0) {
+        handValue += obj.value
+      }
+    })
+
+    let computerHandValue = 0
+    this.state.computerHand.forEach(obj => {
+      if (Object.keys(obj).length != 0) {
+        computerHandValue += obj.value
+      }
+    })
+
+    if (handValue <= 21 && handValue > computerHandValue) {
+      if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
+        let copyHand = this.state.computerHand
+        let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
+        let replacementIndex = this.state.computerHand.findIndex(obj => Object.keys(obj).length == 0)
+        copyHand[replacementIndex] = selectedCard
+        this.setState({
+          draw: 'no',
+          cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
+          computerHand: copyHand
+        }, () => {
+          let handValue = 0
+          this.state.computerHand.forEach(obj => {
+            if (Object.keys(obj).length != 0) {
+              handValue += obj.value
+            }
+          })
+          if (handValue > 21) {
+            this.win()
+          } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
+            this.lose()
           }
         })
-        if (handValue > 21) {
-          this.win()
-        } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
-          this.lose()
-        }
-      })
+      }
     }
   }
 
