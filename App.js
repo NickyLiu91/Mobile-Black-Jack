@@ -99,16 +99,22 @@ export default class App extends Component {
               handValue += obj.value
             }
           })
-          if (handValue > 21) {
-            this.win()
-          } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
-            this.lose()
-          }
+          // if (handValue > 21) {
+          //   this.win()
+          // } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
+          //   this.lose()
+          // }
         })
       }
     }
 
-    if (handValue >= computerHandValue && computerHandValue < 21) {
+    if (computerHandValue > 21) {
+      this.win()
+    } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
+      this.win()
+    } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
+      this.lose()
+    } else if (handValue >= computerHandValue && computerHandValue < 21) {
       setTimeout(this.dealComputerCard, 1000)
     }
   }
