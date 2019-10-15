@@ -1,22 +1,46 @@
 import React, { Component } from "react";
 // import {Platform} from 'react-native';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
 
 export default class Card extends Component {
 
+  state = {
+    hover: false
+  }
+
+  toggleHover = () => {
+    this.setState({
+      hover: !this.state.hover
+    })
+  }
+
   render () {
      if (this.props.source == "single") {
-      return(
-        <Text style={styles.card}>
-        Blank
-        </Text>
-      )
+       if (this.state.hover == true) {
+         return (
+           <TouchableHighlight onPress={this.toggleHover}>
+             <Text style={styles.card} >
+             {this.props.card.number}{"\n"}
+             {this.props.card.value}{"\n"}
+             {this.props.card.suit}
+             </Text>
+           </TouchableHighlight>
+         )
+       } else {
+         return (
+           <TouchableHighlight onPress={this.toggleHover}>
+             <Text style={styles.card}>
+             Blank
+             </Text>
+           </TouchableHighlight>
+         )
+       }
     } else if (Object.keys(this.props.card).length != 0) {
      return (
        <Text style={styles.card}>
-       {this.props.card.number}{"\n"}
-       {this.props.card.value}{"\n"}
-       {this.props.card.suit}
+         {this.props.card.number}{"\n"}
+         {this.props.card.value}{"\n"}
+         {this.props.card.suit}
        </Text>
      )
    } else {
