@@ -7,14 +7,15 @@ export default class ComputerHand extends Component {
 
   generateHandCards = () => {
     let i = 0
-    return this.props.computerHand.map(
-      cardObj => <Card key={i++} card={cardObj}/>
+    return this.props.computerHand.slice(1, this.props.computerHand.length).map(
+      cardObj => <Card key={i++} card={cardObj} source={"hand"}/>
     )
   }
 
   render () {
     return (
       <View style={styles.hand}>
+        <Card card={this.props.computerHand[0]} source={"single"}/>
         {this.generateHandCards()}
       </View>
     )

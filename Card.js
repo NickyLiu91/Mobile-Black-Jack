@@ -5,15 +5,21 @@ import {Text, View, StyleSheet} from 'react-native';
 export default class Card extends Component {
 
   render () {
-     if (Object.keys(this.props.card).length != 0) {
-      return (
+     if (this.props.source == "single") {
+      return(
         <Text style={styles.card}>
-        {this.props.card.number}{"\n"}
-        {this.props.card.value}{"\n"}
-        {this.props.card.suit}
+        Blank
         </Text>
       )
-    } else {
+    } else if (Object.keys(this.props.card).length != 0) {
+     return (
+       <Text style={styles.card}>
+       {this.props.card.number}{"\n"}
+       {this.props.card.value}{"\n"}
+       {this.props.card.suit}
+       </Text>
+     )
+   } else {
       return (
         <Text>
 

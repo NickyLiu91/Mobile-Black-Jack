@@ -7,14 +7,15 @@ export default class Hand extends Component {
 
   generateHandCards = () => {
     let i = 0
-    return this.props.hand.map(
-      cardObj => <Card key={i++} card={cardObj}/>
+    return this.props.hand.slice(1, this.props.hand.length).map(
+      cardObj => <Card key={i++} card={cardObj} source={"hand"}/>
     )
   }
 
   render () {
     return (
       <View style={styles.hand}>
+        <Card card={this.props.hand[0]} source={"single"}/>
         {this.generateHandCards()}
       </View>
     )
