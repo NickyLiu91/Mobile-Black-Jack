@@ -37,22 +37,36 @@ export default class App extends Component {
     this.setState({
       cards: deck
     }, () => {
-      this.dealCard()
+      this.dealCard("hand")
     })
   }
 
-  dealCard = () => {
+  // setUp = () => {
+  //   if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
+  //     let copyHand = this.state.hand
+  //     let firstCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
+  //     let replacementIndex = this.state.hand.findIndex(obj => Object.keys(obj).length == 0)
+  //     copyHand[replacementIndex] = selectedCard
+  //
+  //     this.setState({
+  //       cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
+  //       hand: copyHand
+  //     })
+  //   }
+  // }
+
+  dealCard = (position) => {
     let handValue = 0
-    this.state.hand.forEach(obj => {
+    this.state[position].forEach(obj => {
       if (Object.keys(obj).length != 0) {
         handValue += obj.value
       }
     })
 
-    if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
-      let copyHand = this.state.hand
+    if (this.state[position].some(obj => Object.keys(obj).length == 0)) {
+      let copyHand = this.state[position]
       let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
-      let replacementIndex = this.state.hand.findIndex(obj => Object.keys(obj).length == 0)
+      let replacementIndex = this.state[position].findIndex(obj => Object.keys(obj).length == 0)
       copyHand[replacementIndex] = selectedCard
 
       if (handValue + selectedCard.value > 21) {
@@ -179,7 +193,7 @@ export default class App extends Component {
           <View style={styles.container}>
             <Text style={styles.welcome}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
-            <Button background='black' color='gold' title="DEAL" onPress={this.dealCard}/>
+            <Button background='black' color='gold' title="DEAL" onPress={(event) => {this.dealCard("hand")}}/>
             <Button background='black' color='gold' title="COMPUTER" onPress={this.dealComputerCard}/>
             <Hand hand={this.state.hand}/>
           </View>
