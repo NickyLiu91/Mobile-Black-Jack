@@ -111,12 +111,14 @@ export default class App extends Component {
 
       if (computerHandValue > 21) {
         this.win()
-      } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-        this.win()
-      } else if (this.state[position].every(obj => Object.keys(obj).length != 0)) {
+      } else if (computerHandValue >= handValue) {
         this.lose()
-      } else if (handValue >= computerHandValue && computerHandValue < 21) {
-        setTimeout(this.dealCard("computerHand"), 1000)
+      } else if (handValue > computerHandValue) {
+        if (computerHandValue < 17 || computerHandValue < (handValue - this.state.hand[0].value + 1)) {
+          setTimeout(this.dealComputerCard, 1000)
+        } else {
+          this.holdHand()
+        }
       }
     }
   }
@@ -160,14 +162,14 @@ export default class App extends Component {
 
     if (computerHandValue > 21) {
       this.win()
-    } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-      this.win()
-    } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
+    } else if (computerHandValue >= handValue) {
       this.lose()
-    } else if (handValue == computerHandValue) {
-      this.lose()
-    } else if (handValue >= computerHandValue && computerHandValue < 21) {
-      setTimeout(this.dealComputerCard, 1000)
+    } else if (handValue > computerHandValue) {
+      if (computerHandValue < 17 || computerHandValue < (handValue - this.state.hand[0].value + 1)) {
+        setTimeout(this.dealComputerCard, 1000)
+      } else {
+        this.holdHand()
+      }
     }
   }
 
@@ -179,11 +181,23 @@ export default class App extends Component {
       }
     })
 
-    if (this.state.hand.filter(obj => Object.keys(obj).length != 0).length == 2 && (this.state.hand.find(obj => (obj.number == 'J' || obj.number == 'Q' || obj.number == 'K')) && this.state.hand.find(obj => obj.number == 'A'))
-    ) {
+    let computerHandValue = 0
+    this.state.computerHand.forEach(obj => {
+      if (Object.keys(obj).length != 0) {
+        computerHandValue += obj.value
+      }
+    })
+
+    if (computerHandValue > 21) {
       this.win()
-    } else if(this.state.hand.every(obj => Object.keys(obj).length != 0)) {
+    } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
       this.win()
+    } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0) && computerHandValue <= 21) {
+      this.lose()
+    } else if (handValue > computerHandValue) {
+      this.win()
+    } else {
+      this.lose()
     }
   }
 
@@ -232,7 +246,7 @@ export default class App extends Component {
             <Text style={styles.welcome}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
             <Button background='black' color='gold' title="DEAL" onPress={(event) => {this.dealCard("hand")}}/>
-            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealComputerCard("computerHand")}}/>
+            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealCard("computerHand")}}/>
             <Hand hand={this.state.hand}/>
           </View>
         );
@@ -241,7 +255,7 @@ export default class App extends Component {
           <View style={styles.container}>
             <Text style={styles.welcome}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
-            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealComputerCard("computerHand")}}/>
+            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealCard("computerHand")}}/>
             <Hand hand={this.state.hand}/>
           </View>
         );
