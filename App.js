@@ -164,6 +164,8 @@ export default class App extends Component {
       this.win()
     } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
       this.lose()
+    } else if (handValue == computerHandValue) {
+      this.lose()
     } else if (handValue >= computerHandValue && computerHandValue < 21) {
       setTimeout(this.dealComputerCard, 1000)
     }
@@ -230,7 +232,7 @@ export default class App extends Component {
             <Text style={styles.welcome}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
             <Button background='black' color='gold' title="DEAL" onPress={(event) => {this.dealCard("hand")}}/>
-            <Button background='black' color='gold' title="COMPUTER" onPress={this.dealComputerCard}/>
+            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealComputerCard("computerHand")}}/>
             <Hand hand={this.state.hand}/>
           </View>
         );
@@ -239,7 +241,7 @@ export default class App extends Component {
           <View style={styles.container}>
             <Text style={styles.welcome}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
-            <Button background='black' color='gold' title="COMPUTER" onPress={this.dealComputerCard}/>
+            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealComputerCard("computerHand")}}/>
             <Hand hand={this.state.hand}/>
           </View>
         );
