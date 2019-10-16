@@ -74,7 +74,7 @@ export default class App extends Component {
       } else {
         this.setState({
           cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
-          hand: copyHand
+          position: copyHand
         })
       }
     }
@@ -194,7 +194,7 @@ export default class App extends Component {
             <Text style={styles.welcome}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
             <Button background='black' color='gold' title="DEAL" onPress={(event) => {this.dealCard("hand")}}/>
-            <Button background='black' color='gold' title="COMPUTER" onPress={this.dealComputerCard}/>
+            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealCard("computerHand")}}/>
             <Hand hand={this.state.hand}/>
           </View>
         );
@@ -203,7 +203,7 @@ export default class App extends Component {
           <View style={styles.container}>
             <Text style={styles.welcome}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
-            <Button background='black' color='gold' title="COMPUTER" onPress={this.dealComputerCard}/>
+            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealCard("computerHand")}}/>
             <Hand hand={this.state.hand}/>
           </View>
         );
