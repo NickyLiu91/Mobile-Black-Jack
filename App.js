@@ -44,18 +44,23 @@ export default class App extends Component {
   setUp = () => {
     let allCards = this.state.cards
     let firstCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    allCards.filter(obj => obj.number != firstCard.number || obj.suit != firstCard.suit)
+    console.log(firstCard)
+    allCards = allCards.filter(obj => obj.number != firstCard.number || obj.suit != firstCard.suit)
     let firstComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    allCards.filter(obj => obj.number != firstComputerCard.number || obj.suit != firstComputerCard.suit)
+    console.log(firstComputerCard)
+    allCards = allCards.filter(obj => obj.number != firstComputerCard.number || obj.suit != firstComputerCard.suit)
     let secondCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    allCards.filter(obj => obj.number != secondCard.number || obj.suit != secondCard.suit)
+    console.log(secondCard)
+    allCards = allCards.filter(obj => obj.number != secondCard.number || obj.suit != secondCard.suit)
     let secondComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    allCards.filter(obj => obj.number != secondComputerCard.number || obj.suit != secondComputerCard.suit)
+    console.log(secondComputerCard)
+    allCards = allCards.filter(obj => obj.number != secondComputerCard.number || obj.suit != secondComputerCard.suit)
+    console.log(allCards)
 
     this.setState({
       cards: allCards,
-      hand: { firstCard, secondCard, {}, {}, {}},
-      computerHand: { firstComputerCard, secondConmputerCard, {}, {}, {}}
+      hand: [firstCard, secondCard, {}, {}, {}],
+      computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
     })
   }
 
