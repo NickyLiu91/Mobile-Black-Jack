@@ -37,23 +37,27 @@ export default class App extends Component {
     this.setState({
       cards: deck
     }, () => {
-      this.dealCard("hand")
+      this.setUp()
     })
   }
 
-  // setUp = () => {
-  //   if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
-  //     let copyHand = this.state.hand
-  //     let firstCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
-  //     let replacementIndex = this.state.hand.findIndex(obj => Object.keys(obj).length == 0)
-  //     copyHand[replacementIndex] = selectedCard
-  //
-  //     this.setState({
-  //       cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
-  //       hand: copyHand
-  //     })
-  //   }
-  // }
+  setUp = () => {
+    let allCards = this.state.cards
+    let firstCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    allCards.filter(obj => obj.number != firstCard.number || obj.suit != firstCard.suit)
+    let firstComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    allCards.filter(obj => obj.number != firstComputerCard.number || obj.suit != firstComputerCard.suit)
+    let secondCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    allCards.filter(obj => obj.number != secondCard.number || obj.suit != secondCard.suit)
+    let secondComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    allCards.filter(obj => obj.number != secondComputerCard.number || obj.suit != secondComputerCard.suit)
+
+    this.setState({
+      cards: allCards,
+      hand: { firstCard, secondCard, {}, {}, {}},
+      computerHand: { firstComputerCard, secondConmputerCard, {}, {}, {}}
+    })
+  }
 
   dealCard = (position) => {
 
