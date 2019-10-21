@@ -16,16 +16,26 @@ export default class Card extends Component {
 
   render () {
      if (this.props.source == "single") {
-       if (this.state.hover == true) {
-         return (
-           <TouchableHighlight onPress={this.toggleHover}>
-             <Text style={styles.card} >
-             {this.props.card.number}{"\n"}
-             {this.props.card.value}{"\n"}
-             {this.props.card.suit}
-             </Text>
-           </TouchableHighlight>
-         )
+       if (this.props.player == "player") {
+         if (this.state.hover == true) {
+           return (
+             <TouchableHighlight onPress={this.toggleHover}>
+               <Text style={styles.card} >
+               {this.props.card.number}{"\n"}
+               {this.props.card.value}{"\n"}
+               {this.props.card.suit}
+               </Text>
+             </TouchableHighlight>
+           )
+         } else {
+           return (
+             <TouchableHighlight onPress={this.toggleHover}>
+               <Text style={styles.card}>
+               Blank
+               </Text>
+             </TouchableHighlight>
+           )
+         }
        } else {
          return (
            <TouchableHighlight onPress={this.toggleHover}>

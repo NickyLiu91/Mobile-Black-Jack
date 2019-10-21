@@ -15,7 +15,7 @@ export default class ComputerHand extends Component {
   render () {
     return (
       <View style={styles.hand}>
-        <Card card={this.props.computerHand[0]} source={"single"}/>
+        <Card card={this.props.computerHand[0]} source={"single"} player={"computer"}/>
         {this.generateHandCards()}
       </View>
     )
