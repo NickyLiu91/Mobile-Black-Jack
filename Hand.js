@@ -15,7 +15,7 @@ export default class Hand extends Component {
   generateAllHandCards = () => {
     let i = 0
     return this.props.hand.map(
-      cardObj => <Card key={i++} card={cardObj} source={"hand"}/>
+      cardObj => <Card key={i++} card={cardObj} source={"hand"} end={this.props.end}/>
     )
   }
 
@@ -29,7 +29,7 @@ export default class Hand extends Component {
     } else {
       return (
         <View style={styles.hand}>
-          <Card card={this.props.hand[0]} source={"single"} player={"player"}/>
+          <Card card={this.props.hand[0]} source={"single"} player={"player"} />
           {this.generateHandCards()}
         </View>
       )

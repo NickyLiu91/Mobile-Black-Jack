@@ -15,7 +15,7 @@ export default class Card extends Component {
   }
 
   render () {
-     if (this.props.source == "single") {
+     if (this.props.source == "single" && !this.props.end) {
        if (this.props.player == "player") {
          if (this.state.hover == true) {
            return (

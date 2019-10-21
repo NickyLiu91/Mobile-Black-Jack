@@ -236,7 +236,7 @@ export default class App extends Component {
           <Text style={styles.welcome}>Welcome to Black Jack!</Text>
           <ComputerHand computerHand={this.state.computerHand} end={true}/>
           <Text style={styles.welcome}>YOU LOSE</Text>
-          <Hand hand={this.state.hand}/>
+          <Hand hand={this.state.hand} end={true}/>
         </View>
       );
     } else if (this.state.end == 'WIN') {
@@ -245,7 +245,7 @@ export default class App extends Component {
           <Text style={styles.welcome}>Welcome to Black Jack!</Text>
           <ComputerHand computerHand={this.state.computerHand} end={true}/>
           <Text style={styles.welcome}>YOU WIN</Text>
-          <Hand hand={this.state.hand}/>
+          <Hand hand={this.state.hand} end={true}/>
         </View>
       );
     } else {
