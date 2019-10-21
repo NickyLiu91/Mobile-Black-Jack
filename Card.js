@@ -38,11 +38,9 @@ export default class Card extends Component {
          }
        } else {
          return (
-           <TouchableHighlight onPress={this.toggleHover}>
-             <Text style={styles.card}>
-             Blank
-             </Text>
-           </TouchableHighlight>
+           <Text style={styles.card}>
+           Blank
+           </Text>
          )
        }
     } else if (Object.keys(this.props.card).length != 0) {

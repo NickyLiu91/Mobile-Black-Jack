@@ -12,13 +12,28 @@ export default class ComputerHand extends Component {
     )
   }
 
+  generateAllHandCards = () => {
+    let i = 0
+    return this.props.computerHand.map(
+      cardObj => <Card key={i++} card={cardObj} source={"hand"}/>
+    )
+  }
+
   render () {
-    return (
-      <View style={styles.hand}>
+    if (this.props.end == true) {
+      return (
+        <View style={styles.hand}>
+          {this.generateAllHandCards()}
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.hand}>
         <Card card={this.props.computerHand[0]} source={"single"} player={"computer"}/>
         {this.generateHandCards()}
-      </View>
-    )
+        </View>
+      )
+    }
   }
 }
 

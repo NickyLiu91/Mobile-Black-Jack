@@ -234,7 +234,7 @@ export default class App extends Component {
       return (
         <View style={styles.container}>
           <Text style={styles.welcome}>Welcome to Black Jack!</Text>
-          <ComputerHand computerHand={this.state.computerHand}/>
+          <ComputerHand computerHand={this.state.computerHand} end={true}/>
           <Text style={styles.welcome}>YOU LOSE</Text>
           <Hand hand={this.state.hand}/>
         </View>
@@ -243,7 +243,7 @@ export default class App extends Component {
       return (
         <View style={styles.container}>
           <Text style={styles.welcome}>Welcome to Black Jack!</Text>
-          <ComputerHand computerHand={this.state.computerHand}/>
+          <ComputerHand computerHand={this.state.computerHand} end={true}/>
           <Text style={styles.welcome}>YOU WIN</Text>
           <Hand hand={this.state.hand}/>
         </View>

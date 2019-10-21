@@ -12,13 +12,28 @@ export default class Hand extends Component {
     )
   }
 
-  render () {
-    return (
-      <View style={styles.hand}>
-        <Card card={this.props.hand[0]} source={"single"} player={"player"}/>
-        {this.generateHandCards()}
-      </View>
+  generateAllHandCards = () => {
+    let i = 0
+    return this.props.hand.map(
+      cardObj => <Card key={i++} card={cardObj} source={"hand"}/>
     )
+  }
+
+  render () {
+    if (this.props.end == true) {
+      return (
+        <View style={styles.hand}>
+          {this.generateAllHandCards()}
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.hand}>
+          <Card card={this.props.hand[0]} source={"single"} player={"player"}/>
+          {this.generateHandCards()}
+        </View>
+      )
+    }
   }
 }
 
