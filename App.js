@@ -199,9 +199,11 @@ export default class App extends Component {
 
     if (computerHandValue > 21) {
       this.win()
-    } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-      this.win()
-    } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0) && computerHandValue <= 21) {
+    }
+    // else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
+    //   this.win()
+    // }
+    else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0) && computerHandValue <= 21) {
       this.lose()
     } else if (handValue > computerHandValue) {
       this.win()
