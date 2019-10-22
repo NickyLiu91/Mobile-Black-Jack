@@ -61,6 +61,14 @@ export default class App extends Component {
       cards: allCards,
       hand: [firstCard, secondCard, {}, {}, {}],
       computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
+    }, () => {
+      if (this.checkBlackJack(this.state.hand) && this.checkBlackJack(this.state.computerHand)) {
+        this.tie()
+      } else if (this.checkBlackJack(this.state.hand)) {
+        this.win()
+      } else if (this.checkBlackJack(this.state.computerHand)) {
+        this.lose()
+      }
     })
   }
 
@@ -219,6 +227,12 @@ export default class App extends Component {
     })
   }
 
+  tie = () => {
+    this.setState({
+      end: 'TIE'
+    })
+  }
+
   checkBlackJack = (hand, player) => {
     if (hand.every(obj => Object.keys(obj).length != 0).length == 2 &&
       (hand.some(obj => obj.cardNumber == 'A') && hand.some(obj => obj.cardNumber == 'J' || obj.cardNumber == 'Q' || obj.cardNumber == 'K'))
@@ -252,6 +266,15 @@ export default class App extends Component {
           <Text style={styles.welcome}>Welcome to Black Jack!</Text>
           <ComputerHand computerHand={this.state.computerHand} end={true}/>
           <Text style={styles.welcome}>YOU WIN</Text>
+          <Hand hand={this.state.hand} end={true}/>
+        </View>
+      );
+    } else if (this.state.end == 'TIE') {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+          <ComputerHand computerHand={this.state.computerHand} end={true}/>
+          <Text style={styles.welcome}>TIE</Text>
           <Hand hand={this.state.hand} end={true}/>
         </View>
       );
