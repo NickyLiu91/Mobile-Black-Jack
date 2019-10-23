@@ -14,7 +14,7 @@ export default class App extends Component {
     draw: 'yes',
     cards: [],
     hand: [{}, {}, {}, {}, {}],
-    computerHand: [{number: 'A', value: 11, suit: 'Hearts'}, {number: 'J', value: 10, suit: 'Hearts'}, {}, {}, {}],
+    computerHand: [{}, {}, {}, {}, {}],
     end: ''
   }
 
@@ -59,8 +59,8 @@ export default class App extends Component {
 
     this.setState({
       cards: allCards,
-      // hand: [firstCard, secondCard, {}, {}, {}],
-      // computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
+      hand: [firstCard, secondCard, {}, {}, {}],
+      computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
     }, () => {
       if (this.checkBlackJack(this.state.hand) && this.checkBlackJack(this.state.computerHand)) {
         this.tie()
@@ -72,8 +72,18 @@ export default class App extends Component {
     })
   }
 
-  dealCard = (position) => {
+  calculateHandValue = (hand) => {
+    var handValue = 0
+    hand.forEach(obj => {
+      if (Object.keys(obj).length != 0) {
+        handValue += obj.value
+      }
+    })
+    return handValue
+  }
 
+
+  dealCard = (position) => {
     var handValue = 0
     this.state.hand.forEach(obj => {
       if (Object.keys(obj).length != 0) {
@@ -128,14 +138,20 @@ export default class App extends Component {
 
       if (computerHandValue > 21) {
         this.win()
-      } else if (computerHandValue >= handValue) {
+      } else if (this.state[position].every(obj => Object.keys(obj).length == 0) && this.state.hand.every(obj => Object.keys(obj).length == 0)) {
+        this.tie()
+      } else if (this.state[position].every(obj => Object.keys(obj).length == 0)) {
         this.lose()
-      } else if (handValue > computerHandValue) {
-        if (computerHandValue < 17 || computerHandValue < (handValue - this.state.hand[0].value + 1)) {
-          setTimeout(this.dealComputerCard, 1000)
-        } else {
-          this.holdHand()
-        }
+      } else if (this.state.hand.every(obj => Object.keys(obj).length == 0)) {
+        this.win()
+      } else if (computerHandValue < 17 || computerHandValue < (handValue - this.state.hand[0].value + 1)) {
+        setTimeout(this.dealCard("computerHand"), 9000)
+      } else if (computerHandValue > handValue) {
+        this.lose()
+      } else if (computerHandValue < handValue) {
+        this.win()
+      } else if (computerHandValue == handValue) {
+        this.tie()
       }
     }
   }
@@ -179,14 +195,14 @@ export default class App extends Component {
   //
   //   if (computerHandValue > 21) {
   //     this.win()
-  //   } else if (computerHandValue >= handValue) {
+  //   } else if (computerHandValue < 17 || computerHandValue < (handValue - this.state.hand[0].value + 1)) {
+  //     setTimeout(this.dealComputerCard(), 3000)
+  //   } else if (computerHandValue > handValue) {
   //     this.lose()
-  //   } else if (handValue > computerHandValue) {
-  //     if (computerHandValue < 17 || computerHandValue < (handValue - this.state.hand[0].value + 1)) {
-  //       setTimeout(this.dealComputerCard, 1000)
-  //     } else {
-  //       this.holdHand()
-  //     }
+  //   } else if (computerHandValue < handValue) {
+  //     this.win()
+  //   } else if (computerHandValue == handValue) {
+  //     this.tie()
   //   }
   // }
 
