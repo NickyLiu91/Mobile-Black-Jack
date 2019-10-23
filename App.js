@@ -13,7 +13,7 @@ export default class App extends Component {
   state = {
     draw: 'yes',
     cards: [],
-    hand: [{number: 'A', value: 11}, {number: 'A', value: 11}, {number: 'A', value: 11}, {}, {}],
+    hand: [{}, {}, {}, {}, {}],
     computerHand: [{}, {}, {}, {}, {}],
     end: ''
   }
@@ -59,7 +59,7 @@ export default class App extends Component {
 
     this.setState({
       cards: allCards,
-      // hand: [firstCard, secondCard, {}, {}, {}],
+      hand: [firstCard, secondCard, {}, {}, {}],
       computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
     }, () => {
       if (this.checkBlackJack(this.state.hand) && this.checkBlackJack(this.state.computerHand)) {
