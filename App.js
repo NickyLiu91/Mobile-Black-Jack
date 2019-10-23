@@ -13,7 +13,7 @@ export default class App extends Component {
   state = {
     draw: 'yes',
     cards: [],
-    hand: [{}, {}, {}, {}, {}],
+    hand: [{number: '2', value: 2}, {number: '2', value: 2}, {number: '2', value: 2}, {number: '2', value: 2}, {}],
     computerHand: [{}, {}, {}, {}, {}],
     end: ''
   }
@@ -59,7 +59,7 @@ export default class App extends Component {
 
     this.setState({
       cards: allCards,
-      hand: [firstCard, secondCard, {}, {}, {}],
+      // hand: [firstCard, secondCard, {}, {}, {}],
       computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
     }, () => {
       if (this.checkBlackJack(this.state.hand) && this.checkBlackJack(this.state.computerHand)) {
@@ -86,8 +86,6 @@ export default class App extends Component {
       aces = aces - 1
       handValue = handValue - 10
     }
-    console.log(handValue)
-    console.log(aces)
 
     return handValue
   }
@@ -141,11 +139,11 @@ export default class App extends Component {
 
     if (computerHandValue > 21) {
       this.win()
-    } else if (this.state.computerHand.every(obj => Object.keys(obj).length == 0) && this.state.hand.every(obj => Object.keys(obj).length == 0)) {
+    } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0) && this.state.hand.every(obj => Object.keys(obj).length != 0)) {
       this.tie()
-    } else if (this.state.computerHand.every(obj => Object.keys(obj).length == 0)) {
+    } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
       this.lose()
-    } else if (this.state.hand.every(obj => Object.keys(obj).length == 0)) {
+    } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
       this.win()
     } else if (computerHandValue < 17 || computerHandValue < (handValue - this.state.hand[0].value + 1)) {
       setTimeout(this.dealComputerCard, 3000)
