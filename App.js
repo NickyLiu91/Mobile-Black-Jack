@@ -13,7 +13,7 @@ export default class App extends Component {
   state = {
     draw: 'yes',
     cards: [],
-    hand: [{number: '2', value: 2}, {number: '2', value: 2}, {number: '2', value: 2}, {number: '2', value: 2}, {}],
+    hand: [{number: 'A', value: 11}, {number: 'A', value: 11}, {number: 'A', value: 11}, {}, {}],
     computerHand: [{}, {}, {}, {}, {}],
     end: ''
   }
@@ -121,7 +121,7 @@ export default class App extends Component {
 
     let computerHandValue = this.calculateHandValue(this.state.computerHand)
 
-    if (handValue <= 21 && handValue > computerHandValue) {
+    if (this.visibleHandValue() > computerHandValue) {
       if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
         let copyHand = this.state.computerHand
         let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
@@ -145,7 +145,7 @@ export default class App extends Component {
       this.lose()
     } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
       this.win()
-    } else if (computerHandValue < 17 || computerHandValue < (handValue - this.state.hand[0].value + 1)) {
+    } else if (computerHandValue < 17 || computerHandValue < this.visibleHandValue()) {
       setTimeout(this.dealComputerCard, 3000)
     } else if (computerHandValue > handValue) {
       this.lose()
@@ -154,6 +154,26 @@ export default class App extends Component {
     } else if (computerHandValue == handValue) {
       this.tie()
     }
+  }
+
+  visibleHandValue = () => {
+    var handValue = 1
+    let visibleHand = this.state.hand.slice(1)
+    let aces = visibleHand.filter(obj => obj.value == 11).length
+
+    visibleHand.forEach(obj => {
+      if (Object.keys(obj).length != 0) {
+        handValue += obj.value
+      }
+    })
+
+    while (handValue > 21 && aces > 0) {
+      aces = aces - 1
+      handValue = handValue - 10
+    }
+
+    console.log(handValue)
+    return handValue
   }
 
   lose = () => {
