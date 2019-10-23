@@ -13,8 +13,8 @@ export default class App extends Component {
   state = {
     draw: 'yes',
     cards: [],
-    hand: [{number: 'A', value: 11, suit: 'Hearts'}, {number: 'J', value: 10, suit: 'Hearts'}, {}, {}, {}],
-    computerHand: [{}, {}, {}, {}, {}],
+    hand: [{}, {}, {}, {}, {}],
+    computerHand: [{number: 'A', value: 11, suit: 'Hearts'}, {number: 'J', value: 10, suit: 'Hearts'}, {}, {}, {}],
     end: ''
   }
 
@@ -60,7 +60,7 @@ export default class App extends Component {
     this.setState({
       cards: allCards,
       // hand: [firstCard, secondCard, {}, {}, {}],
-      computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
+      // computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
     }, () => {
       if (this.checkBlackJack(this.state.hand) && this.checkBlackJack(this.state.computerHand)) {
         this.tie()
@@ -69,8 +69,6 @@ export default class App extends Component {
       } else if (this.checkBlackJack(this.state.computerHand)) {
         this.lose()
       }
-      // console.log(this.checkBlackJack(this.state.hand))
-      // console.log(this.checkBlackJack(this.state.computerHand))
     })
   }
 
