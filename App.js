@@ -13,7 +13,7 @@ export default class App extends Component {
   state = {
     draw: 'yes',
     cards: [],
-    hand: [{}, {}, {}, {}, {}],
+    hand: [{number: 'A', value: 11, suit: 'Hearts'}, {number: 'J', value: 10, suit: 'Hearts'}, {}, {}, {}],
     computerHand: [{}, {}, {}, {}, {}],
     end: ''
   }
@@ -59,7 +59,7 @@ export default class App extends Component {
 
     this.setState({
       cards: allCards,
-      hand: [firstCard, secondCard, {}, {}, {}],
+      // hand: [firstCard, secondCard, {}, {}, {}],
       computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
     }, () => {
       if (this.checkBlackJack(this.state.hand) && this.checkBlackJack(this.state.computerHand)) {
@@ -69,6 +69,8 @@ export default class App extends Component {
       } else if (this.checkBlackJack(this.state.computerHand)) {
         this.lose()
       }
+      // console.log(this.checkBlackJack(this.state.hand))
+      // console.log(this.checkBlackJack(this.state.computerHand))
     })
   }
 
@@ -233,9 +235,11 @@ export default class App extends Component {
     })
   }
 
-  checkBlackJack = (hand, player) => {
-    if (hand.every(obj => Object.keys(obj).length != 0).length == 2 &&
-      (hand.some(obj => obj.cardNumber == 'A') && hand.some(obj => obj.cardNumber == 'J' || obj.cardNumber == 'Q' || obj.cardNumber == 'K'))
+  checkBlackJack = (hand) => {
+    // console.log(hand.filter(obj => Object.keys(obj).length != 0))
+    // console.log(hand.some(obj => obj.number == 'A'))
+    if (hand.filter(obj => Object.keys(obj).length != 0).length == 2 &&
+      (hand.some(obj => obj.number == 'A') && hand.some(obj => obj.number == 'J' || obj.number == 'Q' || obj.number == 'K'))
     ) {
       return true
     } else {
