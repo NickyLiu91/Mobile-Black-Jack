@@ -92,16 +92,15 @@ export default class App extends Component {
 
   dealCard = (position) => {
 
-    if (position == "hand") {
-      if (this.state[position].some(obj => Object.keys(obj).length == 0)) {
-        let copyHand = this.state[position]
+      if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
+        let copyHand = this.state.hand
         let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
-        let replacementIndex = this.state[position].findIndex(obj => Object.keys(obj).length == 0)
+        let replacementIndex = this.state.hand.findIndex(obj => Object.keys(obj).length == 0)
         copyHand[replacementIndex] = selectedCard
 
         this.setState({
           cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
-          position: copyHand
+          hand: copyHand
         }, () => {
           let handValue = this.calculateHandValue(this.state.hand)
           if (handValue > 21) {
@@ -109,9 +108,7 @@ export default class App extends Component {
           }
         })
       }
-    } else if (position == "computerHand") {
-      this.dealComputerCard()
-    }
+
   }
 
   dealComputerCard = () => {
@@ -120,7 +117,7 @@ export default class App extends Component {
 
     let computerHandValue = this.calculateHandValue(this.state.computerHand)
 
-    if (this.visibleHandValue() > computerHandValue) {
+    // if (this.visibleHandValue() > computerHandValue || computerHandValue < 17) {
       if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
         let copyHand = this.state.computerHand
         let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
@@ -132,27 +129,27 @@ export default class App extends Component {
           position: copyHand
         }, () => {
           let computerHandValue = this.calculateHandValue(this.state.computerHand)
+
+          if (computerHandValue > 21) {
+            this.win()
+          } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0) && this.state.hand.every(obj => Object.keys(obj).length != 0)) {
+            this.tie()
+          } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
+            this.lose()
+          } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
+            this.win()
+          } else if (computerHandValue < 17 || computerHandValue < this.visibleHandValue()) {
+            setTimeout(this.dealComputerCard, 2000)
+          } else if (computerHandValue > handValue) {
+            this.lose()
+          } else if (computerHandValue < handValue) {
+            this.win()
+          } else if (computerHandValue == handValue) {
+            this.tie()
+          }
         })
       }
-    }
-
-    if (computerHandValue > 21) {
-      this.win()
-    } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0) && this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-      this.tie()
-    } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
-      this.lose()
-    } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-      this.win()
-    } else if (computerHandValue < 17 || computerHandValue < this.visibleHandValue()) {
-      setTimeout(this.dealComputerCard, 3000)
-    } else if (computerHandValue > handValue) {
-      this.lose()
-    } else if (computerHandValue < handValue) {
-      this.win()
-    } else if (computerHandValue == handValue) {
-      this.tie()
-    }
+    // }
   }
 
   visibleHandValue = () => {
@@ -271,8 +268,8 @@ export default class App extends Component {
           <View style={styles.container}>
             <Text style={styles.welcome}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
-            <Button background='black' color='gold' title="DEAL" onPress={(event) => {this.dealCard("hand")}}/>
-            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealCard("computerHand")}}/>
+            <Button background='black' color='gold' title="DEAL" onPress={(event) => {this.dealCard(event)}}/>
+            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealComputerCard(event)}}/>
             <Hand hand={this.state.hand}/>
           </View>
         );
@@ -281,7 +278,7 @@ export default class App extends Component {
           <View style={styles.container}>
             <Text style={styles.welcome}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
-            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealCard("computerHand")}}/>
+            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealComputerCard(event)}}/>
             <Hand hand={this.state.hand}/>
           </View>
         );
