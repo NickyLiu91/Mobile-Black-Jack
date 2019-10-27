@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Hand from './Hand.js';
 import ComputerHand from './ComputerHand.js';
-import {Platform, StyleSheet, Text, View, Button} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 
 const allNumbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const allSuites = ['Diamonds', "Clubs", "Hearts", "Spades"]
@@ -222,9 +222,10 @@ export default class App extends Component {
     console.log(allCards)
 
     this.setState({
-      // cards: allCards,
+      draw: 'yes',
       hand: [firstCard, secondCard, {}, {}, {}],
-      computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
+      computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}],
+      end: ''
     }, () => {
       if (this.checkBlackJack(this.state.hand) && this.checkBlackJack(this.state.computerHand)) {
         this.tie()
@@ -239,30 +240,30 @@ export default class App extends Component {
   render() {
     if (this.state.end == 'LOSE') {
       return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={this.nextRound}>
           <Text style={styles.welcome}>Welcome to Black Jack!</Text>
           <ComputerHand computerHand={this.state.computerHand} end={true}/>
           <Text style={styles.welcome}>YOU LOSE</Text>
           <Hand hand={this.state.hand} end={true}/>
-        </View>
+        </TouchableOpacity>
       );
     } else if (this.state.end == 'WIN') {
       return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={this.nextRound}>
           <Text style={styles.welcome}>Welcome to Black Jack!</Text>
           <ComputerHand computerHand={this.state.computerHand} end={true}/>
           <Text style={styles.welcome}>YOU WIN</Text>
           <Hand hand={this.state.hand} end={true}/>
-        </View>
+        </TouchableOpacity>
       );
     } else if (this.state.end == 'TIE') {
       return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={this.nextRound}>
           <Text style={styles.welcome}>Welcome to Black Jack!</Text>
           <ComputerHand computerHand={this.state.computerHand} end={true}/>
           <Text style={styles.welcome}>TIE</Text>
           <Hand hand={this.state.hand} end={true}/>
-        </View>
+        </TouchableOpacity>
       );
     } else {
       if (this.state.draw == 'yes') {
