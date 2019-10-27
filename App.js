@@ -90,7 +90,6 @@ export default class App extends Component {
     return handValue
   }
 
-
   dealCard = (position) => {
 
     if (position == "hand") {
@@ -206,12 +205,36 @@ export default class App extends Component {
     }
   }
 
-  // deal = () => {
-  //   let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
-  //   this.setState({
-  //     card: {number: 1, suit: 'Clubs'}
-  //   }, () => {console.log(this.state.cards)})
-  // }
+  nextRound = () => {
+    let allCards = this.state.cards
+    let firstCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    console.log(firstCard)
+    allCards = allCards.filter(obj => obj.number != firstCard.number || obj.suit != firstCard.suit)
+    let firstComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    console.log(firstComputerCard)
+    allCards = allCards.filter(obj => obj.number != firstComputerCard.number || obj.suit != firstComputerCard.suit)
+    let secondCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    console.log(secondCard)
+    allCards = allCards.filter(obj => obj.number != secondCard.number || obj.suit != secondCard.suit)
+    let secondComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    console.log(secondComputerCard)
+    allCards = allCards.filter(obj => obj.number != secondComputerCard.number || obj.suit != secondComputerCard.suit)
+    console.log(allCards)
+
+    this.setState({
+      // cards: allCards,
+      hand: [firstCard, secondCard, {}, {}, {}],
+      computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}]
+    }, () => {
+      if (this.checkBlackJack(this.state.hand) && this.checkBlackJack(this.state.computerHand)) {
+        this.tie()
+      } else if (this.checkBlackJack(this.state.hand)) {
+        this.win()
+      } else if (this.checkBlackJack(this.state.computerHand)) {
+        this.lose()
+      }
+    })
+  }
 
   render() {
     if (this.state.end == 'LOSE') {
