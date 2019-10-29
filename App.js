@@ -98,7 +98,7 @@ export default class App extends Component {
       }, () => {
         if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
           let copyHand = this.state.hand
-          let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
+          let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length)]
           let replacementIndex = this.state.hand.findIndex(obj => Object.keys(obj).length == 0)
           copyHand[replacementIndex] = selectedCard
 
@@ -116,7 +116,7 @@ export default class App extends Component {
     } else {
       if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
         let copyHand = this.state.hand
-        let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
+        let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length)]
         let replacementIndex = this.state.hand.findIndex(obj => Object.keys(obj).length == 0)
         copyHand[replacementIndex] = selectedCard
 
@@ -145,7 +145,7 @@ export default class App extends Component {
 
         if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
           let copyHand = this.state.computerHand
-          let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
+          let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length)]
           let replacementIndex = this.state.computerHand.findIndex(obj => Object.keys(obj).length == 0)
           copyHand[replacementIndex] = selectedCard
           this.setState({
@@ -182,9 +182,11 @@ export default class App extends Component {
 
       if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
         let copyHand = this.state.computerHand
-        let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
+        let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length)]
         let replacementIndex = this.state.computerHand.findIndex(obj => Object.keys(obj).length == 0)
         copyHand[replacementIndex] = selectedCard
+        console.log(selectedCard)
+        console.log(this.state.cards)
         this.setState({
           draw: 'no',
           cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
@@ -266,32 +268,35 @@ export default class App extends Component {
 
   nextRound = () => {
     let allCards = this.state.cards
+    // console.log(deck)
+    // console.log(allCards)
 
     if (allCards.length == 0) {
       allCards = deck
     }
-    let firstCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    // console.log(firstCard)
+    let firstCard = allCards[Math.floor(Math.random() * allCards.length)]
+    console.log(firstCard)
+    console.log(allCards)
     allCards = allCards.filter(obj => obj.number != firstCard.number || obj.suit != firstCard.suit)
 
     if (allCards.length == 0) {
       allCards = deck
     }
-    let firstComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    let firstComputerCard = allCards[Math.floor(Math.random() * allCards.length)]
     // console.log(firstComputerCard)
     allCards = allCards.filter(obj => obj.number != firstComputerCard.number || obj.suit != firstComputerCard.suit)
 
     if (allCards.length == 0) {
       allCards = deck
     }
-    let secondCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    let secondCard = allCards[Math.floor(Math.random() * allCards.length)]
     // console.log(secondCard)
     allCards = allCards.filter(obj => obj.number != secondCard.number || obj.suit != secondCard.suit)
 
     if (allCards.length == 0) {
       allCards = deck
     }
-    let secondComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
+    let secondComputerCard = allCards[Math.floor(Math.random() * allCards.length)]
     // console.log(secondComputerCard)
     allCards = allCards.filter(obj => obj.number != secondComputerCard.number || obj.suit != secondComputerCard.suit)
     console.log(allCards)
