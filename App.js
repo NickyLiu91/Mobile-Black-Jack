@@ -91,7 +91,29 @@ export default class App extends Component {
   }
 
   dealCard = (position) => {
+    if (this.state.cards.length == 0) {
+      this.generateDeck()
+      this.setState({
+        cards: deck
+      }, () => {
+        if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
+          let copyHand = this.state.hand
+          let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
+          let replacementIndex = this.state.hand.findIndex(obj => Object.keys(obj).length == 0)
+          copyHand[replacementIndex] = selectedCard
 
+          this.setState({
+            cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
+            hand: copyHand
+          }, () => {
+            let handValue = this.calculateHandValue(this.state.hand)
+            if (handValue > 21) {
+              this.lose()
+            }
+          })
+        }
+      })
+    } else {
       if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
         let copyHand = this.state.hand
         let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length) + 1]
@@ -108,7 +130,7 @@ export default class App extends Component {
           }
         })
       }
-
+    }
   }
 
   dealComputerCard = () => {
