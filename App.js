@@ -92,9 +92,21 @@ export default class App extends Component {
 
   dealCard = (position) => {
     if (this.state.cards.length == 0) {
-      this.generateDeck()
+      let fieldCards = []
+      this.state.hand.forEach(card => {
+        if (Object.keys.length != 0) {
+          fieldCards << card
+        }
+      })
+
+      this.state.computerHand.forEach(card => {
+        if (Object.keys.length != 0) {
+          fieldCards << card
+        }
+      })
+
       this.setState({
-        cards: deck
+        cards: deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
       }, () => {
         if (this.state.hand.some(obj => Object.keys(obj).length == 0)) {
           let copyHand = this.state.hand
@@ -135,9 +147,21 @@ export default class App extends Component {
 
   dealComputerCard = () => {
     if (this.state.cards.length == 0) {
-      this.generateDeck()
+      let fieldCards = []
+      this.state.hand.forEach(card => {
+        if (Object.keys.length != 0) {
+          fieldCards << card
+        }
+      })
+
+      this.state.computerHand.forEach(card => {
+        if (Object.keys.length != 0) {
+          fieldCards << card
+        }
+      })
+
       this.setState({
-        cards: deck
+        cards: deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
       }, () => {
         var handValue = this.calculateHandValue(this.state.hand)
 
@@ -268,11 +292,21 @@ export default class App extends Component {
 
   nextRound = () => {
     let allCards = this.state.cards
-    // console.log(deck)
-    // console.log(allCards)
+    let fieldCards = []
+    this.state.hand.forEach(card => {
+      if (Object.keys.length != 0) {
+        fieldCards << card
+      }
+    })
+
+    this.state.computerHand.forEach(card => {
+      if (Object.keys.length != 0) {
+        fieldCards << card
+      }
+    })
 
     if (allCards.length == 0) {
-      allCards = deck
+      allCards = deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
     }
     let firstCard = allCards[Math.floor(Math.random() * allCards.length)]
     console.log(firstCard)
@@ -280,21 +314,21 @@ export default class App extends Component {
     allCards = allCards.filter(obj => obj.number != firstCard.number || obj.suit != firstCard.suit)
 
     if (allCards.length == 0) {
-      allCards = deck
+      allCards = deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
     }
     let firstComputerCard = allCards[Math.floor(Math.random() * allCards.length)]
     // console.log(firstComputerCard)
     allCards = allCards.filter(obj => obj.number != firstComputerCard.number || obj.suit != firstComputerCard.suit)
 
     if (allCards.length == 0) {
-      allCards = deck
+      allCards = deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
     }
     let secondCard = allCards[Math.floor(Math.random() * allCards.length)]
     // console.log(secondCard)
     allCards = allCards.filter(obj => obj.number != secondCard.number || obj.suit != secondCard.suit)
 
     if (allCards.length == 0) {
-      allCards = deck
+      allCards = deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
     }
     let secondComputerCard = allCards[Math.floor(Math.random() * allCards.length)]
     // console.log(secondComputerCard)
