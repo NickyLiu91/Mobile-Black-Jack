@@ -4,7 +4,7 @@ import ComputerHand from './ComputerHand.js';
 import {Platform, StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 
 const allNumbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-const allSuites = ['Diamonds', "Clubs", "Hearts", "Spades"]
+const allSuites = ['Diamonds']
 
 const deck = []
 
@@ -266,22 +266,39 @@ export default class App extends Component {
 
   nextRound = () => {
     let allCards = this.state.cards
+
+    if (allCards.length == 0) {
+      allCards = deck
+    }
     let firstCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    console.log(firstCard)
+    // console.log(firstCard)
     allCards = allCards.filter(obj => obj.number != firstCard.number || obj.suit != firstCard.suit)
+
+    if (allCards.length == 0) {
+      allCards = deck
+    }
     let firstComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    console.log(firstComputerCard)
+    // console.log(firstComputerCard)
     allCards = allCards.filter(obj => obj.number != firstComputerCard.number || obj.suit != firstComputerCard.suit)
+
+    if (allCards.length == 0) {
+      allCards = deck
+    }
     let secondCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    console.log(secondCard)
+    // console.log(secondCard)
     allCards = allCards.filter(obj => obj.number != secondCard.number || obj.suit != secondCard.suit)
+
+    if (allCards.length == 0) {
+      allCards = deck
+    }
     let secondComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    console.log(secondComputerCard)
+    // console.log(secondComputerCard)
     allCards = allCards.filter(obj => obj.number != secondComputerCard.number || obj.suit != secondComputerCard.suit)
     console.log(allCards)
 
     this.setState({
       draw: 'yes',
+      cards: allCards,
       hand: [firstCard, secondCard, {}, {}, {}],
       computerHand: [firstComputerCard, secondComputerCard, {}, {}, {}],
       end: ''
@@ -293,13 +310,6 @@ export default class App extends Component {
       } else if (this.checkBlackJack(this.state.computerHand)) {
         this.lose()
       }
-    })
-  }
-
-  resetDeck = () => {
-    this.generateDeck()
-    this.setState({
-      cards: deck
     })
   }
 
