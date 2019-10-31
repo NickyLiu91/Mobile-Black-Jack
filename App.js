@@ -104,6 +104,8 @@ export default class App extends Component {
           fieldCards << card
         }
       })
+      console.log(fieldCards)
+      console.log(cdeck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1))
 
       this.setState({
         cards: deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
@@ -159,6 +161,9 @@ export default class App extends Component {
           fieldCards << card
         }
       })
+
+      console.log(fieldCards)
+      console.log(deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1))
 
       this.setState({
         cards: deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
@@ -292,18 +297,21 @@ export default class App extends Component {
 
   nextRound = () => {
     let allCards = this.state.cards
-    let fieldCards = []
-    this.state.hand.forEach(card => {
-      if (Object.keys.length != 0) {
-        fieldCards << card
-      }
-    })
-
-    this.state.computerHand.forEach(card => {
-      if (Object.keys.length != 0) {
-        fieldCards << card
-      }
-    })
+    // let fieldCards = []
+    // this.state.hand.forEach(card => {
+    //   if (Object.keys.length != 0) {
+    //     fieldCards << card
+    //   }
+    // })
+    //
+    // this.state.computerHand.forEach(card => {
+    //   if (Object.keys.length != 0) {
+    //     fieldCards << card
+    //   }
+    // })
+    //
+    // console.log(fieldCards)
+    // console.log(deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1))
 
     if (allCards.length == 0) {
       allCards = deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
