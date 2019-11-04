@@ -22,7 +22,7 @@ export default class Card extends Component {
              <TouchableHighlight onPress={this.toggleHover}>
                <Text style={styles.card} >
                {this.props.card.number}{"\n"}
-               {this.props.card.value}{"\n"}
+              //  {this.props.card.value}{"\n"}
                {this.props.card.suit}
                </Text>
              </TouchableHighlight>
@@ -47,7 +47,7 @@ export default class Card extends Component {
      return (
        <Text style={styles.card}>
          {this.props.card.number}{"\n"}
-         {this.props.card.value}{"\n"}
+        //  {this.props.card.value}{"\n"}
          {this.props.card.suit}
        </Text>
      )

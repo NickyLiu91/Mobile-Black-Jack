@@ -3,8 +3,8 @@ import Hand from './Hand.js';
 import ComputerHand from './ComputerHand.js';
 import {Platform, StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 
-const allNumbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-const allSuites = ['Diamonds']
+const allNumbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+const allSuites = ['Diamonds', 'Clubs', 'Hearts', 'Spades']
 
 const deck = []
 
@@ -44,18 +44,18 @@ export default class App extends Component {
   setUp = () => {
     let allCards = this.state.cards
     let firstCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    console.log(firstCard)
+    // console.log(firstCard)
     allCards = allCards.filter(obj => obj.number != firstCard.number || obj.suit != firstCard.suit)
     let firstComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    console.log(firstComputerCard)
+    // console.log(firstComputerCard)
     allCards = allCards.filter(obj => obj.number != firstComputerCard.number || obj.suit != firstComputerCard.suit)
     let secondCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    console.log(secondCard)
+    // console.log(secondCard)
     allCards = allCards.filter(obj => obj.number != secondCard.number || obj.suit != secondCard.suit)
     let secondComputerCard = allCards[Math.floor(Math.random() * allCards.length) + 1]
-    console.log(secondComputerCard)
+    // console.log(secondComputerCard)
     allCards = allCards.filter(obj => obj.number != secondComputerCard.number || obj.suit != secondComputerCard.suit)
-    console.log(allCards)
+    // console.log(allCards)
 
     this.setState({
       cards: allCards,
@@ -106,8 +106,8 @@ export default class App extends Component {
           fieldCards = [...fieldCards, card]
         }
       })
-      console.log(fieldCards)
-      console.log(deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1))
+      // console.log(fieldCards)
+      // console.log(deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1))
 
       this.setState({
         cards: deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
@@ -166,8 +166,8 @@ export default class App extends Component {
         }
       })
 
-      console.log(fieldCards)
-      console.log(deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1))
+      // console.log(fieldCards)
+      // console.log(deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1))
 
       this.setState({
         cards: deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
@@ -218,8 +218,8 @@ export default class App extends Component {
         let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length)]
         let replacementIndex = this.state.computerHand.findIndex(obj => Object.keys(obj).length == 0)
         copyHand[replacementIndex] = selectedCard
-        console.log(selectedCard)
-        console.log(this.state.cards)
+        // console.log(selectedCard)
+        // console.log(this.state.cards)
         this.setState({
           draw: 'no',
           cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
