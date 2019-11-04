@@ -40,6 +40,6 @@ export default class Hand extends Component {
 const styles = StyleSheet.create({
   hand: {
     flexDirection: 'row',
-    backgroundColor: 'brown'
+    backgroundColor: 'blue'
   }
 });
