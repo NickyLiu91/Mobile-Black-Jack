@@ -30,7 +30,7 @@ export default class Card extends Component {
            return (
              <TouchableHighlight onPress={this.toggleHover}>
                <Text style={styles.cardBack}>
-               blank
+
                </Text>
              </TouchableHighlight>
            )
@@ -38,7 +38,7 @@ export default class Card extends Component {
        } else {
          return (
            <Text style={styles.cardBack}>
-           blank
+
            </Text>
          )
        }
@@ -68,14 +68,27 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderColor: 'black',
     borderWidth: 3,
-    margin: 5
+    margin: 5,
+    textAlign: 'center'
   },
   cardBack: {
     width: 70,
     height: 140,
     borderWidth: 3,
     margin: 5,
-    color: 'red',
-    backgroundColor: 'red'
-  }
+    // padding: 10,
+    // color: 'brown',
+    backgroundColor: 'brown',
+    borderColor: 'gold',
+    // flex: 0.3,
+    // alignItems: 'center',
+    // justifyContent: 'center'
+  },
+  // circle: {
+  //   width: 70,
+  //   height: 100,
+  //   // borderWidth: 3,
+  //   borderColor: 'white',
+  //   backgroundColor: 'blue',
+  // }
 });
