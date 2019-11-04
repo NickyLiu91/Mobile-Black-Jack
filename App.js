@@ -3,7 +3,7 @@ import Hand from './Hand.js';
 import ComputerHand from './ComputerHand.js';
 import {Platform, StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 
-const allNumbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+const allNumbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 const allSuites = ['Diamonds']
 
 const deck = []
@@ -94,18 +94,20 @@ export default class App extends Component {
     if (this.state.cards.length == 0) {
       let fieldCards = []
       this.state.hand.forEach(card => {
-        if (Object.keys.length != 0) {
-          fieldCards << card
+        if (Object.keys(card).length != 0) {
+          // fieldCards << card
+          fieldCards = [...fieldCards, card]
         }
       })
 
       this.state.computerHand.forEach(card => {
-        if (Object.keys.length != 0) {
-          fieldCards << card
+        if (Object.keys(card).length != 0) {
+          // fieldCards << card
+          fieldCards = [...fieldCards, card]
         }
       })
       console.log(fieldCards)
-      console.log(cdeck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1))
+      console.log(deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1))
 
       this.setState({
         cards: deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
@@ -151,14 +153,16 @@ export default class App extends Component {
     if (this.state.cards.length == 0) {
       let fieldCards = []
       this.state.hand.forEach(card => {
-        if (Object.keys.length != 0) {
-          fieldCards << card
+        if (Object.keys(card).length != 0) {
+          // fieldCards << card
+          fieldCards = [...fieldCards, card]
         }
       })
 
       this.state.computerHand.forEach(card => {
-        if (Object.keys.length != 0) {
-          fieldCards << card
+        if (Object.keys(card).length != 0) {
+          // fieldCards << card
+          fieldCards = [...fieldCards, card]
         }
       })
 
