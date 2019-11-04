@@ -298,6 +298,7 @@ export default class App extends Component {
   nextRound = () => {
     let allCards = this.state.cards
     let fieldCards = []
+    // console.log(allCards)
     // this.state.hand.forEach(card => {
     //   if (Object.keys.length != 0) {
     //     fieldCards << card
@@ -315,37 +316,51 @@ export default class App extends Component {
 
     if (allCards.length == 0) {
       allCards = deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
+      // console.log(allCards)
     }
     let firstCard = allCards[Math.floor(Math.random() * allCards.length)]
-    fieldCards << firstCard
-    console.log(firstCard)
-    console.log(allCards)
+    // fieldCards << firstCard
+    fieldCards = [...fieldCards, firstCard]
+    // console.log(firstCard)
     allCards = allCards.filter(obj => obj.number != firstCard.number || obj.suit != firstCard.suit)
+    // console.log(fieldCards)
+    // console.log(allCards)
 
     if (allCards.length == 0) {
       allCards = deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
+      // console.log(allCards)
     }
     let firstComputerCard = allCards[Math.floor(Math.random() * allCards.length)]
-    fieldCards << firstComputerCard
+    // fieldCards << firstComputerCard
+    fieldCards = [...fieldCards, firstComputerCard]
     // console.log(firstComputerCard)
     allCards = allCards.filter(obj => obj.number != firstComputerCard.number || obj.suit != firstComputerCard.suit)
+    // console.log(fieldCards)
+    // console.log(allCards)
 
     if (allCards.length == 0) {
       allCards = deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
+      // console.log(allCards)
     }
     let secondCard = allCards[Math.floor(Math.random() * allCards.length)]
-    fieldCards << secondCard
+    // fieldCards << secondCard
+    fieldCards = [...fieldCards, secondCard]
     // console.log(secondCard)
     allCards = allCards.filter(obj => obj.number != secondCard.number || obj.suit != secondCard.suit)
+    // console.log(fieldCards)
+    // console.log(allCards)
 
     if (allCards.length == 0) {
       allCards = deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
+      // console.log(allCards)
     }
     let secondComputerCard = allCards[Math.floor(Math.random() * allCards.length)]
-    fieldCards << secondComputerCard
+    // fieldCards << secondComputerCard
+    fieldCards = [...fieldCards, secondComputerCard]
     // console.log(secondComputerCard)
     allCards = allCards.filter(obj => obj.number != secondComputerCard.number || obj.suit != secondComputerCard.suit)
-    console.log(allCards)
+    // console.log(fieldCards)
+    // console.log(allCards)
 
     this.setState({
       draw: 'yes',
