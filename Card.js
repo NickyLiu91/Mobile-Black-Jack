@@ -34,7 +34,8 @@ export default class Card extends Component {
              <TouchableHighlight onPress={this.toggleHover}>
                <Text style={styles.card} >
                {this.props.card.number}{"\n"}
-               <Image source={this.findSuit(this.props.card.suit)} />
+               <Image style={{height: 50, width: 50}} source={require('./diamond.png')} />
+
                </Text>
              </TouchableHighlight>
            )
@@ -58,7 +59,7 @@ export default class Card extends Component {
      return (
        <Text style={styles.card}>
          {this.props.card.number}{"\n"}
-         <Image source={this.findSuit(this.props.card.suit)} />
+         <Image style={{height: 50, width: 50}} source={require('./diamond.png')} />
        </Text>
      )
    } else {
