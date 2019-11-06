@@ -2,9 +2,19 @@ import React, { Component } from "react";
 // import {Platform} from 'react-native';
 import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
 
-suits = [♣, ♦, ♥, ♠]
-
 export default class Card extends Component {
+
+  findSuit = (suit) => {
+    if (suit == 'Diamonds') {
+      return ♦
+    } else if (suit == 'Clubs') {
+      return ♣
+    } else if (suit == 'Hearts') {
+      return ♥
+    } else if (suit == 'Diamonds') {
+      return ♠
+    }
+  }
 
   state = {
     hover: false
@@ -24,7 +34,7 @@ export default class Card extends Component {
              <TouchableHighlight onPress={this.toggleHover}>
                <Text style={styles.card} >
                {this.props.card.number}{"\n"}
-               {this.props.card.suit}
+               {this.findSuit(this.props.card)}
                </Text>
              </TouchableHighlight>
            )
@@ -48,7 +58,7 @@ export default class Card extends Component {
      return (
        <Text style={styles.card}>
          {this.props.card.number}{"\n"}
-         {this.props.card.suit}
+         {this.findSuit(this.props.card)}
        </Text>
      )
    } else {
