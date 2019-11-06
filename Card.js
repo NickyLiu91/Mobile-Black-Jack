@@ -2,19 +2,22 @@ import React, { Component } from "react";
 // import {Platform} from 'react-native';
 import {Text, View, StyleSheet, TouchableHighlight, Image} from 'react-native';
 
-export default class Card extends Component {
-
-  findSuit = (suit) => {
-    if (suit == 'Diamonds') {
-      return '/images/diamond.png'
-    } else if (suit == 'Clubs') {
-      return '/images/club.png'
-    } else if (suit == 'Hearts') {
-      return '/images/heart.png'
-    } else if (suit == 'Diamonds') {
-      return '/images/spade.png'
-    }
+var SUITS = [
+  {
+    Diamonds: require('./images/Diamonds.png')
+  },
+  {
+    Clubs: require('./images/Clubs.png')
+  },
+  {
+    Hearts: require('./images/Hearts.png')
+  },
+  {
+    Spades: require('./images/Spades.png')
   }
+]
+
+export default class Card extends Component {
 
   state = {
     hover: false
@@ -34,7 +37,7 @@ export default class Card extends Component {
              <TouchableHighlight onPress={this.toggleHover}>
                <Text style={styles.card} >
                {this.props.card.number}{"\n"}
-               <Image style={{height: 50, width: 50}} source={require('./diamond.png')} />
+               <Image style={{height: 50, width: 50}} source={SUITS.Diamonds} />
 
                </Text>
              </TouchableHighlight>
@@ -59,7 +62,7 @@ export default class Card extends Component {
      return (
        <Text style={styles.card}>
          {this.props.card.number}{"\n"}
-         <Image style={{height: 50, width: 50}} source={require('./diamond.png')} />
+         <Image style={{height: 50, width: 50}} source={SUITS.Diamonds} />
        </Text>
      )
    } else {
