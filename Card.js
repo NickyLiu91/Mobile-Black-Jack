@@ -2,6 +2,8 @@ import React, { Component } from "react";
 // import {Platform} from 'react-native';
 import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
 
+suits = [♣, ♦, ♥, ♠]
+
 export default class Card extends Component {
 
   state = {
