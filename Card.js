@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 // import {Platform} from 'react-native';
-import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
+import {Text, View, StyleSheet, TouchableHighlight, Image} from 'react-native';
 
 export default class Card extends Component {
 
   findSuit = (suit) => {
     if (suit == 'Diamonds') {
-      return 'images/diamond.png'
+      return '/images/diamond.png'
     } else if (suit == 'Clubs') {
-      return 'images/clubs.png'
+      return '/images/club.png'
     } else if (suit == 'Hearts') {
-      return 'images/hearts.png'
+      return '/images/heart.png'
     } else if (suit == 'Diamonds') {
-      return 'images/spades.png'
+      return '/images/spade.png'
     }
   }
 
@@ -34,7 +34,7 @@ export default class Card extends Component {
              <TouchableHighlight onPress={this.toggleHover}>
                <Text style={styles.card} >
                {this.props.card.number}{"\n"}
-               {this.findSuit(this.props.card)}
+               <Image source={this.findSuit(this.props.card.suit)} />
                </Text>
              </TouchableHighlight>
            )
@@ -58,7 +58,7 @@ export default class Card extends Component {
      return (
        <Text style={styles.card}>
          {this.props.card.number}{"\n"}
-         {this.findSuit(this.props.card)}
+         <Image source={this.findSuit(this.props.card.suit)} />
        </Text>
      )
    } else {
