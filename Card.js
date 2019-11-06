@@ -2,20 +2,13 @@ import React, { Component } from "react";
 // import {Platform} from 'react-native';
 import {Text, View, StyleSheet, TouchableHighlight, Image} from 'react-native';
 
-var SUITS = [
-  {
-    Diamonds: require('./images/Diamonds.png')
-  },
-  {
-    Clubs: require('./images/Clubs.png')
-  },
-  {
-    Hearts: require('./images/Hearts.png')
-  },
-  {
-    Spades: require('./images/Spades.png')
-  }
-]
+var SUITS = {
+  Diamonds: require('./images/Diamonds.png'),
+  Clubs: require('./images/Clubs.png'),
+  Hearts: require('./images/Hearts.png'),
+  Spades: require('./images/Spades.png')
+}
+
 
 export default class Card extends Component {
 
@@ -37,7 +30,9 @@ export default class Card extends Component {
              <TouchableHighlight onPress={this.toggleHover}>
                <Text style={styles.card} >
                {this.props.card.number}{"\n"}
-               <Image style={{height: 50, width: 50}} source={SUITS.Diamonds} />
+               <Image style={{height: 50, width: 50}} source={SUITS[this.props.card.suit]} />
+               {console.log(this.props.card.suit)}
+               {console.log(SUITS.Diamonds)}
 
                </Text>
              </TouchableHighlight>
@@ -62,7 +57,9 @@ export default class Card extends Component {
      return (
        <Text style={styles.card}>
          {this.props.card.number}{"\n"}
-         <Image style={{height: 50, width: 50}} source={SUITS.Diamonds} />
+         <Image style={{height: 50, width: 50}} source={SUITS[this.props.card.suit]} />
+         {console.log(this.props.card.suit)}
+         {console.log(SUITS.Diamonds)}
        </Text>
      )
    } else {
