@@ -6,13 +6,13 @@ export default class Card extends Component {
 
   findSuit = (suit) => {
     if (suit == 'Diamonds') {
-      return '♦'
+      return 'images/diamond.png'
     } else if (suit == 'Clubs') {
-      return '♣'
+      return 'images/clubs.png'
     } else if (suit == 'Hearts') {
-      return '♥'
+      return 'images/hearts.png'
     } else if (suit == 'Diamonds') {
-      return '♠'
+      return 'images/spades.png'
     }
   }
 
