@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 3,
     margin: 5,
-    // alignItems: 'left'
+    // flexDirection: 'column',
+    justifyContent: 'space-between'
   },
   topHalf: {
     color: 'red',
