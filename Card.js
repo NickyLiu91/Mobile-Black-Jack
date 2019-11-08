@@ -29,11 +29,15 @@ export default class Card extends Component {
            return (
              <TouchableHighlight onPress={this.toggleHover}>
                <Text style={styles.card} >
-               {this.props.card.number}{"\n"}
-               <Image style={{height: 50, width: 50}} source={SUITS[this.props.card.suit]} />
-               {console.log(this.props.card.suit)}
-               {console.log(SUITS.Diamonds)}
-
+                 <Text style={styles.topHalf}>
+                   {this.props.card.number}{"\n"}
+                   <Image style={styles.images} source={SUITS[this.props.card.suit]} />
+                 </Text>
+                 {"\n"}
+                 <Text style={styles.bottomHalf}>
+                   {this.props.card.number}{"\n"}
+                   <Image style={styles.images} source={SUITS[this.props.card.suit]} />
+                 </Text>
                </Text>
              </TouchableHighlight>
            )
@@ -56,10 +60,15 @@ export default class Card extends Component {
     } else if (Object.keys(this.props.card).length != 0) {
      return (
        <Text style={styles.card}>
-         {this.props.card.number}{"\n"}
-         <Image style={{height: 50, width: 50}} source={SUITS[this.props.card.suit]} />
-         {console.log(this.props.card.suit)}
-         {console.log(SUITS.Diamonds)}
+        <Text style={styles.topHalf}>
+          {this.props.card.number}{"\n"}
+          <Image style={styles.images} source={SUITS[this.props.card.suit]} />
+        </Text>
+        {"\n"}
+        <Text style={styles.bottomHalf}>
+          {this.props.card.number}{"\n"}
+          <Image style={styles.images} source={SUITS[this.props.card.suit]} />
+        </Text>
        </Text>
      )
    } else {
@@ -75,14 +84,30 @@ export default class Card extends Component {
 
 const styles = StyleSheet.create({
   card: {
-    width: 70,
-    height: 140,
+    flex: 1,
+    maxWidth: 70,
+    minWidth: 70,
+    maxHeight: 140,
+    minHeight: 140,
     color: 'red',
     backgroundColor: 'white',
     borderColor: 'black',
     borderWidth: 3,
     margin: 5,
-    textAlign: 'center'
+    // flexDirection: 'column',
+    // padding: 5
+  },
+  topHalf: {
+    color: 'red',
+    flexDirection: 'column',
+    justifyContent: 'flex-start'
+    // alignItems: 'top'
+  },
+  topHalf: {
+    color: 'blue',
+    flexDirection: 'column',
+    justifyContent: 'flex-end'
+    // alignItems: 'bottom'
   },
   cardBack: {
     width: 70,
@@ -97,6 +122,10 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center'
   },
+  images: {
+    height: 10,
+    width: 10
+  }
   // circle: {
   //   width: 70,
   //   height: 100,
