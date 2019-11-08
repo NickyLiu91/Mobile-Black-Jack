@@ -28,48 +28,50 @@ export default class Card extends Component {
          if (this.state.hover == true) {
            return (
              <TouchableHighlight onPress={this.toggleHover}>
-               <Text style={styles.card} >
-                 <Text style={styles.topHalf}>
-                   {this.props.card.number}{"\n"}
+               <View style={styles.card} >
+                 <View style={styles.topHalf}>
+                   <Text>{this.props.card.number}</Text>
+
                    <Image style={styles.images} source={SUITS[this.props.card.suit]} />
-                 </Text>
-                 {"\n"}
-                 <Text style={styles.bottomHalf}>
-                   {this.props.card.number}{"\n"}
+                 </View>
+
+                 <View style={styles.bottomHalf}>
+                   <Text>{this.props.card.number}</Text>
+
                    <Image style={styles.images} source={SUITS[this.props.card.suit]} />
-                 </Text>
-               </Text>
+                 </View>
+               </View>
              </TouchableHighlight>
            )
          } else {
            return (
              <TouchableHighlight onPress={this.toggleHover}>
-               <Text style={styles.cardBack}>
+               <View style={styles.cardBack}>
 
-               </Text>
+               </View>
              </TouchableHighlight>
            )
          }
        } else {
          return (
-           <Text style={styles.cardBack}>
+           <View style={styles.cardBack}>
 
-           </Text>
+           </View>
          )
        }
     } else if (Object.keys(this.props.card).length != 0) {
      return (
-       <Text style={styles.card}>
-        <Text style={styles.topHalf}>
-          {this.props.card.number}{"\n"}
+       <View style={styles.card}>
+        <View style={styles.topHalf}>
+          <Text>{this.props.card.number}</Text>
           <Image style={styles.images} source={SUITS[this.props.card.suit]} />
-        </Text>
-        {"\n"}
-        <Text style={styles.bottomHalf}>
-          {this.props.card.number}{"\n"}
+        </View>
+
+        <View style={styles.bottomHalf}>
+          <Text>{this.props.card.number}</Text>
           <Image style={styles.images} source={SUITS[this.props.card.suit]} />
-        </Text>
-       </Text>
+        </View>
+       </View>
      )
    } else {
       return (
@@ -94,19 +96,16 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 3,
     margin: 5,
-    // flexDirection: 'column',
-    // padding: 5
+    // alignItems: 'left'
   },
   topHalf: {
     color: 'red',
-    flexDirection: 'column',
-    justifyContent: 'flex-start'
+    alignSelf: 'flex-start'
     // alignItems: 'top'
   },
-  topHalf: {
+  bottomHalf: {
     color: 'blue',
-    flexDirection: 'column',
-    justifyContent: 'flex-end'
+    alignSelf: 'flex-end'
     // alignItems: 'bottom'
   },
   cardBack: {
