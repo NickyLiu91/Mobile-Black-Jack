@@ -35,6 +35,8 @@ export default class Card extends Component {
                    <Image style={styles.images} source={SUITS[this.props.card.suit]} />
                  </View>
 
+                 <Image style={styles.centerImage} source={SUITS[this.props.card.suit]} />
+
                  <View style={styles.bottomHalf}>
                    <Text>{this.props.card.number}</Text>
 
@@ -69,6 +71,8 @@ export default class Card extends Component {
           <Image style={styles.images} source={SUITS[this.props.card.suit]} />
         </View>
 
+        <Image style={styles.centerImage} source={SUITS[this.props.card.suit]} />
+
         <View style={styles.bottomHalf}>
           <Text>{this.props.card.number}</Text>
           <Image style={styles.images} source={SUITS[this.props.card.suit]} />
@@ -88,7 +92,7 @@ export default class Card extends Component {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
+    // flex: 1,
     maxWidth: 70,
     minWidth: 70,
     maxHeight: 140,
@@ -103,8 +107,8 @@ const styles = StyleSheet.create({
   },
   topHalf: {
     color: 'red',
-    alignSelf: 'flex-start'
-    // alignItems: 'top'
+    alignSelf: 'flex-start',
+    // backgroundColor: 'blue'
   },
   bottomHalf: {
     color: 'blue',
@@ -127,7 +131,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   images: {
-    height: 10,
+    height: 12,
     width: 10
   },
   circle: {
@@ -137,5 +141,12 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: 'black',
     alignSelf: 'center'
+  },
+  centerImage: {
+    alignSelf: 'center',
+    height: 60,
+    width: 50,
+    // backgroundColor: 'gray',
+    zIndex: 2
   }
 });
