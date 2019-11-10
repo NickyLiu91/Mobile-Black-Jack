@@ -112,26 +112,30 @@ const styles = StyleSheet.create({
     // alignItems: 'bottom'
   },
   cardBack: {
-    width: 70,
-    height: 140,
+    maxWidth: 70,
+    minWidth: 70,
+    maxHeight: 140,
+    minHeight: 140,
     borderWidth: 3,
     margin: 5,
     // padding: 10,
     // color: 'brown',
     backgroundColor: 'brown',
     borderColor: 'gold',
-    // flex: 0.3,
+    flex: 1,
     // alignItems: 'center',
-    // justifyContent: 'center'
+    justifyContent: 'center'
   },
   images: {
     height: 10,
     width: 10
   },
   circle: {
-    // width: 70,
-    // height: 100,
+    width: 30,
+    height: 80,
     // borderColor: 'white',
-    // backgroundColor: 'blue'
+    borderRadius: 50,
+    backgroundColor: 'black',
+    alignSelf: 'center'
   }
 });
