@@ -47,7 +47,8 @@ export default class Card extends Component {
            return (
              <TouchableHighlight onPress={this.toggleHover}>
                <View style={styles.cardBack}>
-
+                 <View style={styles.circle}>
+                 </View>
                </View>
              </TouchableHighlight>
            )
@@ -55,7 +56,8 @@ export default class Card extends Component {
        } else {
          return (
            <View style={styles.cardBack}>
-
+            <View style={styles.circle}>
+            </View>
            </View>
          )
        }
@@ -125,12 +127,11 @@ const styles = StyleSheet.create({
   images: {
     height: 10,
     width: 10
+  },
+  circle: {
+    // width: 70,
+    // height: 100,
+    // borderColor: 'white',
+    // backgroundColor: 'blue'
   }
-  // circle: {
-  //   width: 70,
-  //   height: 100,
-  //   // borderWidth: 3,
-  //   borderColor: 'white',
-  //   backgroundColor: 'blue',
-  // }
 });
