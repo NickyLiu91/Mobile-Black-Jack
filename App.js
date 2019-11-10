@@ -387,27 +387,27 @@ export default class App extends Component {
     if (this.state.end == 'LOSE') {
       return (
         <TouchableOpacity style={styles.container} onPress={this.nextRound}>
-          <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+          <Text style={styles.text}>Welcome to Black Jack!</Text>
           <ComputerHand computerHand={this.state.computerHand} end={true}/>
-          <Text style={styles.welcome}>YOU LOSE</Text>
+          <Text style={styles.text}>YOU LOSE</Text>
           <Hand hand={this.state.hand} end={true}/>
         </TouchableOpacity>
       );
     } else if (this.state.end == 'WIN') {
       return (
         <TouchableOpacity style={styles.container} onPress={this.nextRound}>
-          <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+          <Text style={styles.text}>Welcome to Black Jack!</Text>
           <ComputerHand computerHand={this.state.computerHand} end={true}/>
-          <Text style={styles.welcome}>YOU WIN</Text>
+          <Text style={styles.text}>YOU WIN</Text>
           <Hand hand={this.state.hand} end={true}/>
         </TouchableOpacity>
       );
     } else if (this.state.end == 'TIE') {
       return (
         <TouchableOpacity style={styles.container} onPress={this.nextRound}>
-          <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+          <Text style={styles.text}>Welcome to Black Jack!</Text>
           <ComputerHand computerHand={this.state.computerHand} end={true}/>
-          <Text style={styles.welcome}>TIE</Text>
+          <Text style={styles.text}>TIE</Text>
           <Hand hand={this.state.hand} end={true}/>
         </TouchableOpacity>
       );
@@ -415,7 +415,7 @@ export default class App extends Component {
       if (this.state.draw == 'yes') {
         return (
           <View style={styles.container}>
-            <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+            <Text style={styles.text}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
             <Button background='black' color='gold' title="DEAL" onPress={(event) => {this.dealCard(event)}}/>
             <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealComputerCard(event)}}/>
@@ -425,7 +425,7 @@ export default class App extends Component {
       } else {
         return (
           <View style={styles.container}>
-            <Text style={styles.welcome}>Welcome to Black Jack!</Text>
+            <Text style={styles.text}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
             <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealComputerCard(event)}}/>
             <Hand hand={this.state.hand}/>
@@ -444,10 +444,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'green',
   },
-  welcome: {
+  text: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    color: 'gold'
   },
   cards: {
     textAlign: 'center',
