@@ -417,8 +417,8 @@ export default class App extends Component {
           <View style={styles.container}>
             <Text style={styles.text}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
-            <Button background='black' color='gold' title="DEAL" onPress={(event) => {this.dealCard(event)}}/>
-            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealComputerCard(event)}}/>
+            <Button background='black' color='gold' title="HIT" onPress={(event) => {this.dealCard(event)}}/>
+            <Button background='black' color='gold' title="STAND" onPress={(event) => {this.dealComputerCard(event)}}/>
             <Hand hand={this.state.hand}/>
           </View>
         );
@@ -427,7 +427,7 @@ export default class App extends Component {
           <View style={styles.container}>
             <Text style={styles.text}>Welcome to Black Jack!</Text>
             <ComputerHand computerHand={this.state.computerHand}/>
-            <Button background='black' color='gold' title="COMPUTER" onPress={(event) => {this.dealComputerCard(event)}}/>
+            <Button background='black' color='gold' title="STAND" onPress={(event) => {this.dealComputerCard(event)}}/>
             <Hand hand={this.state.hand}/>
           </View>
         );
