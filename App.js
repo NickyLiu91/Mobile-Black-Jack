@@ -4,7 +4,7 @@ import ComputerHand from './ComputerHand.js';
 import {Platform, StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 
 const allNumbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-const allSuites = ['Diamonds']
+const allSuits = ['Diamonds', 'Clubs', 'Hearts', 'Spades']
 
 const deck = []
 
@@ -20,7 +20,7 @@ export default class App extends Component {
 
   generateDeck = () => {
     allNumbers.forEach(cardNumber => {
-      allSuites.forEach(cardSuit => {
+      allSuits.forEach(cardSuit => {
         if (cardNumber == 'A') {
           deck.push({number: cardNumber, suit: cardSuit, value: 11})
         } else if (cardNumber == 'J' || cardNumber == 'Q' || cardNumber == 'K') {
