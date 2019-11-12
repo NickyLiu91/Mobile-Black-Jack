@@ -172,7 +172,7 @@ export default class App extends Component {
       this.setState({
         cards: deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
       }, () => {
-        var handValue = this.calculateHandValue(this.state.hand)
+        var handValue = this.visibleHandValue(this.state.hand)
 
         let computerHandValue = this.calculateHandValue(this.state.computerHand)
 
@@ -186,7 +186,6 @@ export default class App extends Component {
             cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
             position: copyHand
           }, () => {
-            let computerHandValue = this.calculateHandValue(this.state.computerHand)
 
             if (computerHandValue > 21) {
               this.win()
@@ -209,9 +208,12 @@ export default class App extends Component {
         }
       })
     } else {
-      var handValue = this.calculateHandValue(this.state.hand)
+      var handValue = this.visibleHandValue(this.state.hand)
 
       let computerHandValue = this.calculateHandValue(this.state.computerHand)
+
+      console.log(computerHandValue)
+      console.log(handValue)
 
       if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
         let copyHand = this.state.computerHand
@@ -225,7 +227,6 @@ export default class App extends Component {
           cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
           position: copyHand
         }, () => {
-          let computerHandValue = this.calculateHandValue(this.state.computerHand)
 
           if (computerHandValue > 21) {
             this.win()
