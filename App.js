@@ -212,8 +212,10 @@ export default class App extends Component {
       var handValue = this.visibleHandValue()
 
       let computerHandValue = this.calculateHandValue(this.state.computerHand)
-      console.log(computerHandValue)
+
+      let realHandValue = this.calculateHandValue(this.state.hand)
       console.log(handValue)
+      console.log(computerHandValue)
 
       if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
         if (computerHandValue < handValue || computerHandValue < 17) {
@@ -221,52 +223,29 @@ export default class App extends Component {
           let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length)]
           let replacementIndex = this.state.computerHand.findIndex(obj => Object.keys(obj).length == 0)
           copyHand[replacementIndex] = selectedCard
-          // console.log(selectedCard)
-          // console.log(this.state.cards)
+
           this.setState({
             draw: 'no',
             cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
             position: copyHand
           }, () => {
             let computerHandValue = this.calculateHandValue(this.state.computerHand)
-
-            if (computerHandValue > 21) {
-              this.win()
-            } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0) && this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-              this.tie()
-            } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
-              this.lose()
-            } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-              this.win()
-            } else if (computerHandValue > handValue) {
-              this.lose()
-            } else if (computerHandValue < handValue) {
-              this.win()
-            } else if (computerHandValue == handValue) {
-              this.tie()
-            } else {
-              setTimeout(this.dealComputerCard, 2000)
-            }
+            setTimeout(this.dealComputerCard, 2000)
           })
-        } else {
-          let actualHandValue = this.calculateHandValue(this.state.hand)
-          if (computerHandValue > 21) {
-            this.win()
-          } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0) && this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-            this.tie()
-          } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
-            this.lose()
-          } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-            this.win()
-          } else if (computerHandValue < actualHandValue) {
-            this.win()
-          } else if (computerHandValue > actualHandValue) {
-            this.lose()
-          } else if (computerHandValue < actualHandValue) {
-            this.win()
-          } else if (computerHandValue == actualHandValue) {
-            this.tie()
-          }
+        } else if (computerHandValue > 21) {
+          this.win()
+        } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0) && this.state.hand.every(obj => Object.keys(obj).length != 0)) {
+          this.tie()
+        } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
+          this.lose()
+        } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
+          this.win()
+        } else if (computerHandValue > realHandValue) {
+          this.lose()
+        } else if (computerHandValue < realHandValue) {
+          this.win()
+        } else if (computerHandValue == realHandValue) {
+          this.tie()
         }
       }
     }
