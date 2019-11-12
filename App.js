@@ -4,7 +4,7 @@ import ComputerHand from './ComputerHand.js';
 import {Platform, StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 
 const allNumbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-const allSuites = ['Diamonds', 'Clubs', 'Hearts', 'Spades']
+const allSuites = ['Diamonds']
 
 const deck = []
 
@@ -172,41 +172,7 @@ export default class App extends Component {
       this.setState({
         cards: deck.filter(card => fieldCards.filter(card2 => card.number == card2.number && card.suit == card2.suit).length != 1)
       }, () => {
-        var handValue = this.visibleHandValue(this.state.hand)
-
-        let computerHandValue = this.calculateHandValue(this.state.computerHand)
-
-        if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
-          let copyHand = this.state.computerHand
-          let selectedCard = this.state.cards[Math.floor(Math.random() * this.state.cards.length)]
-          let replacementIndex = this.state.computerHand.findIndex(obj => Object.keys(obj).length == 0)
-          copyHand[replacementIndex] = selectedCard
-          this.setState({
-            draw: 'no',
-            cards: this.state.cards.filter(obj => obj.number != selectedCard.number || obj.suit != selectedCard.suit),
-            position: copyHand
-          }, () => {
-            let computerHandValue = this.calculateHandValue(this.state.computerHand)
-
-            if (computerHandValue > 21) {
-              this.win()
-            } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0) && this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-              this.tie()
-            } else if (this.state.computerHand.every(obj => Object.keys(obj).length != 0)) {
-              this.lose()
-            } else if (this.state.hand.every(obj => Object.keys(obj).length != 0)) {
-              this.win()
-            } else if (computerHandValue < 17 || computerHandValue < this.visibleHandValue()) {
-              setTimeout(this.dealComputerCard, 2000)
-            } else if (computerHandValue > handValue) {
-              this.lose()
-            } else if (computerHandValue < handValue) {
-              this.win()
-            } else if (computerHandValue == handValue) {
-              this.tie()
-            }
-          })
-        }
+        setTimeout(this.dealComputerCard, 2000)
       })
     } else {
       var handValue = this.visibleHandValue()
@@ -214,8 +180,6 @@ export default class App extends Component {
       let computerHandValue = this.calculateHandValue(this.state.computerHand)
 
       let realHandValue = this.calculateHandValue(this.state.hand)
-      console.log(handValue)
-      console.log(computerHandValue)
 
       if (this.state.computerHand.some(obj => Object.keys(obj).length == 0)) {
         if (computerHandValue < handValue || computerHandValue < 17) {
