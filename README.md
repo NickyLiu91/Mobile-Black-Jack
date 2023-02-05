@@ -1,7 +1,7 @@
 # Mobile-Black-Jack
 
 ## Description
-Blackjack game vs an AI opponenet using ReactNative.
+Blackjack game vs an AI opponent using ReactNative.
 
 The user and computer are given a hand, and the user can decide to either hit (multiple times) or stay. The computer will then make the same decisions, and the winner will be automatically decided at the end by comparing hands.
 
